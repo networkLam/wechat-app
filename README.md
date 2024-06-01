@@ -1,1 +1,1 @@
-what I don't asknowledge writing some..
+what I don't knowledge writing some..
