@@ -1,0 +1,4 @@
+<!--components/type-menu/type-menu.wxml-->
+<view class="type-menu-wrapper">
+<view> <image src="{{src}}" mode=""/> </view> <view><text>{{text}}</text></view>
+</view>

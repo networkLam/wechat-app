@@ -1,0 +1,25 @@
+<!--pages/info/info.wxml-->
+<navigation-bar title="我的信息" back="{{false}}" color="white" background="#0000ff"></navigation-bar>
+<view id="wrapper">
+<view>
+<!-- 用户登录信息 -->
+<view class="userInfo" bind:tap="gotoDetail">
+<image src="../../static/UserDefault/UserIcon.svg" mode=""  style="height: 142rpx;width: 142rpx;"/>  <view style="padding-left: 20rpx;"><text style="font-size:44rpx ;">未登录用户</text></view> <image src="../../static/point/jiantou.svg" mode="" style="height: 30rpx;width: 30rpx;float: right;padding-right: 30rpx;"/>  
+</view>
+
+
+</view>
+
+<view class="listShow">
+<!-- 渲染选择列表 -->
+<block wx:for="{{listInfo}}" wx:key="index">
+  <view class="display" bind:tap="toPage" data-num="{{index}}"><text>{{item}}</text> 
+  <image src="../../static/point/jiantou.svg" mode="" style="height: 30rpx;width: 30rpx;padding-right: 52rpx;"/> </view>
+
+</block>
+</view>
+<!-- <van-cell-group>
+  <van-cell title="单元格" value="内容" />
+  <van-cell title="单元格" value="内容" label="描述信息" border="{{ false }}" />
+</van-cell-group> -->
+</view>

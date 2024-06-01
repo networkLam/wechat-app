@@ -1,0 +1,3 @@
+<!--pages/aboutOur/aboutOur.wxml-->
+<navigation-bar title="关于我们" back="{{true}}" color="white" background="#0000ff"></navigation-bar>
+<text>pages/aboutOur/aboutOur.wxml</text>

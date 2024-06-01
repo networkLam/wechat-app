@@ -1,0 +1,7 @@
+{"usingComponents": {
+    "navigation-bar": "/components/navigation-bar/navigation-bar", 
+    "cart-item" : "/components/cart-item/cart-item",
+    "van-submit-bar": "@vant/weapp/submit-bar/index",
+    "van-card": "@vant/weapp/card/index"
+  }
+}

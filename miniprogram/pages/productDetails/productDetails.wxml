@@ -1,0 +1,80 @@
+<!--pages/productDetails/productDetails.wxml-->
+<!-- <navigation-bar title="购物车" back="{{true}}" color="white" background="#0000ff"></navigation-bar> -->
+<view class="product-details-wrapper">
+<!-- 返回箭头 -->
+<view class="back" bind:tap="back" ><image src="../../static/point/jiantou.svg" mode="" style="transform: rotate(180deg);height: 30rpx;width: 30rpx;" /></view>
+<!-- 图片 -->
+<view>
+  <swiper indicator-dots="{{true}}" autoplay="{{true}}" easing-function="linear" indicator-type="jump" class="swiper-one">
+  <block wx:for="{{productDetails.picture}}" wx:key="index">
+          <swiper-item>
+            <image src="{{item}}" mode=""/>
+          </swiper-item>
+        </block>
+</swiper >
+</view>
+<!-- 价格 -->
+<view class="price">
+<view><text class="price-all"> <text class="price-icon">¥</text> <text class="price-price">{{productDetails.price}}</text> </text></view>
+<view><text class="price-sale">已售 {{productDetails.sale}}</text></view>
+</view>
+<!-- 描述 -->
+<view class="descript">
+<text user-select>{{productDetails.product_name}}{{productDetails.descript}}</text>
+</view>
+
+<!-- 发货信息 服务保障-->
+<view class="service">
+<!-- what can i do ? -->
+<view class="service-deliver"> <view class="deliver-icon"><image src="../../static/icon/delivery.svg" mode="" style="width: 44rpx;height: 44rpx;"/></view> <view class="deliver-text"><text>现在下单48小时内发货</text></view></view>
+<view class="express-text"><text>快递：免运费</text></view>
+<!-- 这是一条分割线 -->
+<view class="line"></view>
+<view class="service-guarantee"> <view class="deliver-icon"><image src="../../static/icon/guarantee.svg" mode="" style="width: 44rpx;height: 44rpx;"/></view> <view class="deliver-text"><text>极速退款 · 退货运费险 · 7天无理由退换</text></view></view>
+
+</view>
+
+
+<!-- 商品评论 -->
+<view class="comment">
+<view class="comment-title"><text>商品评价(2)</text> <view style="display: flex;align-items: center;"> <text class="show-all">查看全部</text><image src="../../static/point/jiantou.svg" mode="" style="transform: rotate(0deg); height: 15px; width: 15px;" /></view> </view>
+<view class="comment-block">
+<view class="comment-icon"> <!--用户头像 --> <image src="../../static/comment/boy.svg" mode="" style="width: 70rpx;height: 70rpx;border-radius: 50%;"/> <text class="comment-name">陆仁贾</text></view>
+<view class="comment-comment"><text>非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！</text></view>
+</view>
+
+<view class="comment-block">
+<view class="comment-icon"> <!--用户头像 --> <image src="../../static/comment/girl.svg" mode="" style="width: 70rpx;height: 70rpx;border-radius: 50%;"/> <text class="comment-name">X.</text></view>
+<view class="comment-comment"><text>非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！</text></view>
+</view>
+
+</view>
+
+
+<!-- 立即购买和加入购物车等按钮 -->
+<view style="position: relative; z-index: 11;">
+<van-goods-action>
+  <van-goods-action-icon icon="chat-o" text="客服" bind:click="onClickIcon" />
+  <van-goods-action-icon icon="cart-o" text="购物车" bind:click="tocart" />
+  <van-goods-action-icon icon="star-o" text="收藏" bind:click="collection" />
+  <van-goods-action-button
+    text="加入购物车"
+    type="warning"
+    bind:click="onClickButton"
+  />
+  <van-goods-action-button text="立即购买" bind:click="onClickButton" />
+</van-goods-action>
+</view>
+
+
+<!-- 弹出 -->
+  <van-popup show="{{ show }}" bind:close="onClose"  position="bottom" z-index="10" round="{{true}}">
+  <view class="popup-wrapper">
+    <view class="content">
+    <!-- 加个选中和没选中的样式 -->
+    <view bind:tap="onselected"><text class="check {{selected == true ? 'activity':''}}">默认</text></view>
+    </view>
+  </view>
+  </van-popup>
+
+</view>

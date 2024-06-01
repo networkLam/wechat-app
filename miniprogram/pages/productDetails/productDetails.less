@@ -1,0 +1,177 @@
+/* pages/productDetails/productDetails.wxss */
+.product-details-wrapper{
+  .back{
+    position: fixed;
+    top: 100rpx;
+    left: 38rpx;
+    width: 52rpx;
+    height: 52rpx;
+    background:rgba(128,128,128, 0.2);
+    text-align: center;
+    line-height:52rpx ;
+    z-index: 99;
+  }
+}
+
+
+
+.swiper-one{
+  width: 100%;
+  height: 900rpx;
+  image{
+    width: 100%;
+    height: 890rpx;
+  }
+}
+
+//产品描述的样式
+.descript{
+  font-size: 34rpx;
+  color: #000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  letter-spacing: 0;
+  word-break: break-all;
+}
+
+.price{
+  height: 60rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  // 人民币符号
+  .price-icon{
+    font-size: 34rpx;
+  }
+  .price-all{
+    padding-left: 12rpx;
+    color: #ff6200;
+  }
+  .price-price{
+    font-size: 50rpx;
+  }
+  // 已售
+  .price-sale{
+    padding-right: 14rpx;
+    color:#50607a;
+    font-size: 26rpx;
+  }
+}
+
+.popup-wrapper{
+  height: 500rpx;
+}
+//默认选中的样式
+.check{
+  position: absolute;
+  top: 12rpx;
+  left: 20rpx;
+  width: auto;
+  background-color: rgba(0, 0, 0, .06);
+  border: 1px solid transparent;
+  padding: 4rpx;
+}
+.activity{
+  background-color: #fff7f3;
+ border-color:  #ff5000;
+ color: #ff5000;
+}
+
+// service region css
+.service{
+  margin-top:32rpx;
+  .service-deliver{
+    display: flex;
+    align-items: center;
+    line-height: 26rpx;
+    margin-left: 22rpx;
+  }
+  .deliver-icon{
+    margin-left: 10rpx;
+    margin-right: 10rpx;
+
+  }
+  .deliver-text{
+    font-size:30rpx ;
+    // 文本颜色应该是偏灰色
+    color: #333333;
+
+  }
+  .express-text{
+    margin-top: 6rpx;
+    font-size:26rpx ;
+    color: #9a9a9a;
+    margin-left: 86rpx;
+    margin-bottom: 22rpx;
+  }
+  // divide line
+  .line{
+    margin: 0 auto;
+    width: 90%;
+    height: 1rpx;
+    border-top: 1px solid #ccc;
+  }
+  .service-guarantee{
+    margin-top: 22rpx;
+    display: flex;
+    align-items: center;
+    line-height: 26rpx;
+    margin-left: 22rpx;
+  }
+}
+// 评论区的样式
+.comment{
+  background-color: #ffffff;
+  width: 100%;
+  margin-top: 40rpx;
+  padding-bottom: 168rpx;
+  .comment-title{
+    font-size: 36rpx;
+    padding-left: 10rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .show-all{
+      font-size: 26rpx;
+      color: #9b9b9b;
+      padding-right: 2rpx;
+    }
+  }
+
+  .comment-block{
+    margin-top: 12rpx;
+    margin-bottom: 12rpx;
+    .comment-icon{
+      height: 72rpx;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      image{
+        margin-left: 20rpx;
+        margin-right: 20rpx;
+      }
+      
+    }
+    .comment-comment{
+      margin-top: 18rpx;
+      margin-bottom: 28rpx;
+      padding-right: 10rpx;
+      padding-left: 10rpx;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      letter-spacing: 0;
+      word-break: break-all;
+      color: #585858;
+    }
+    .comment-name{
+      color: #1a1a1a;
+    }
+  }
+}

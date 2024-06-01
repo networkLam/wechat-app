@@ -1,0 +1,4 @@
+<!--components/return-top/return-top.wxml-->
+<view class="return-wrapper">
+  <van-icon name="back-top"  size="26px"/>
+</view>

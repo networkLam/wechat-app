@@ -1,0 +1,3 @@
+<!--pages/addressManage/addressManage.wxml-->
+<navigation-bar title="收货地址管理" back="{{true}}" color="white" background="#0000ff"></navigation-bar>
+<text>pages/addressManage/addressManage.wxml</text>

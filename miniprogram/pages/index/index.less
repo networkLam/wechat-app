@@ -1,0 +1,112 @@
+/**index.less**/
+page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.index-wrapper{
+  margin-top: 170rpx;
+
+}
+.scrollarea {
+  flex: 1;
+  overflow-y: hidden;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #aaa;
+  width: 80%;
+}
+
+.userinfo-avatar {
+  overflow: hidden;
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+.avatar-wrapper {
+  padding: 0;
+  width: 56px !important;
+  border-radius: 8px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.avatar {
+  display: block;
+  width: 56px;
+  height: 56px;
+}
+
+.nickname-wrapper {
+  display: flex;
+  width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+  border-top: .5px solid rgba(0, 0, 0, 0.1);
+  border-bottom: .5px solid rgba(0, 0, 0, 0.1);
+  color: black;
+}
+
+.nickname-label {
+  width: 105px;
+}
+
+.nickname-input {
+  flex: 1;
+}
+
+.swiper-item{
+  width: 100%;
+  height: 400rpx;
+}
+.demo-text-1{
+  background-color: green;
+
+}
+
+.demo-text-2{
+  background-color: red;
+}
+
+.demo-text-3{
+  background-color: blue;
+}
+
+.scroll-test{
+  white-space: nowrap;
+  height: 200rpx;
+  width: 100%;
+}
+
+
+.content{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-left: 10rpx;
+  justify-content: flex-start;
+  background-color:#f6f6f6 ;
+  .back-top{
+    position: fixed;
+    right: 32rpx;
+    bottom: 374rpx;
+  }
+}
+
+.child{
+  // width: 50%;
+  flex: 1;
+  width: calc((100% - 10rpx) / 2);   // 我这里一行显示2个 所以是/2  一行显示几个就除以几 
+  // 这里的60px = (分布个数4-1)*间隙20px, 可以根据实际的分布个数和间隙区调整
+  min-width: calc((100% - 10rpx) / 2);
+  max-width: calc((100% - 60px) / 2);
+}

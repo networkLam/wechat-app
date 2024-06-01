@@ -1,0 +1,8 @@
+<!--components/icon-botton/icon-botton.wxml-->
+<view class="icon-boton-wrapper">
+<view>
+<image src="{{show_icon}}" mode="" />
+</view>
+<view><text >{{show_text}}</text></view>
+
+</view>

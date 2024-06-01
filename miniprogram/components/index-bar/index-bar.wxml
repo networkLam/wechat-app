@@ -1,0 +1,16 @@
+<!--components/index-bar/index-bar.wxml-->
+<view class="index-bar-wrapper">
+<view class="blank"></view>
+<view class="wrapper">
+  <view class="location">
+    <image src="../../static/bar/location.svg" mode="" />
+    <text class="text1">{{location}}</text>
+  </view>
+
+  <view class="search" bind:tap="ontap">
+    <image src="../../static/bar/search.svg" mode="" />
+    <text class="text1">搜索</text>
+  </view>
+
+</view>
+</view>

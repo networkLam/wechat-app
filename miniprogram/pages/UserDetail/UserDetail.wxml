@@ -1,0 +1,11 @@
+<!--pages/UserDetail/UserDetail.wxml-->
+<navigation-bar title="编辑个人信息" back="{{true}}" color="black" background="#fff"></navigation-bar>
+<view class="userDetails-wrapper">
+  <van-cell-group inset>
+  <van-cell title="头像" is-link value="内容" />
+  <van-cell title="昵称" is-link value="{{userDetail.user_name}}" />
+  <van-cell title="性別" is-link value="{{userDetail.gender}}" />
+  <van-cell title="手机号" is-link value="{{userDetail.phone}}" />
+</van-cell-group>
+
+</view>

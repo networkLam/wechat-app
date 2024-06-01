@@ -1,0 +1,53 @@
+/* components/search-block/search-block.wxss */
+.search-block-wrapper{
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  height: 250rpx;
+  .search-block-img{
+    image{
+      width: 245rpx;
+      height: 245rpx;
+      border-radius: 12px;
+    }
+  }
+  .search-block-text{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 240rpx;
+    .search-block-description{
+      padding: 2rpx;
+    font-size: 32rpx;
+    color: #11192d;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 500;
+    word-break: break-all;
+    }
+   .search-block-price{
+    color: #ff6200;
+    font-size: 42rpx;
+    // font-weight: 700;
+    // line-height: 36rpx;
+    vertical-align: middle;
+    // padding-left: 10rpx;
+   }
+   .CNY{
+    font-size: 32rpx;
+   }
+  //  销售文本
+   .search-block-sale{
+    color: #50607a;
+    font-size: 28rpx;
+    padding-left: 12rpx;
+   }
+   .search-block-price-region{
+     display: flex;
+     align-items: center;
+   }
+  }
+}

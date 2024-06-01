@@ -1,0 +1,17 @@
+<!--pages/cart/cart.wxml-->
+<view >
+<navigation-bar title="" back="{{false}}" color="white" background="#fff"></navigation-bar>
+<view class="manage-product"><text class="cart">购物车</text><text class="text" bind:tap="manage">管理</text></view>
+<block wx:for="{{cart_storage}}" wx:key="index">
+  <cart-item goods_id="{{item.id}}" title="{{item.title}}" product_type="{{item.product_type}}" picture="{{item.picture}}" price="{{item.price}}" amount="{{item.amount}}" product_index="{{index}}" bind:oncheck="oncheck"  bind:updateamount="updateamount" showDel="{{isDelete}}"></cart-item>
+</block>
+<!-- what the help ? unit is CNY cent -->
+<van-submit-bar
+  price="{{ price}}"
+  button-text="提交订单"
+  bind:submit="onClickButton"
+  tip="{{ true }}"
+>
+  <van-tag type="primary">全选</van-tag>
+</van-submit-bar>
+</view>

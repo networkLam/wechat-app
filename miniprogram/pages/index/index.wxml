@@ -1,0 +1,53 @@
+<!--index.wxml-->
+<!-- <navigation-bar title="仓储式量贩订购" back="{{false}}" color="white" background="#0000ff"></navigation-bar> -->
+<index-bar location="{{'广州天河'}}" bind:ontap="tosearch"></index-bar> 
+<view class="index-wrapper" >
+<!-- 滑块内容 -->
+<swiper indicator-dots="{{true}}" autoplay="{{true}}" easing-function="linear" indicator-type="jump">
+  <block wx:for="{{background}}" wx:key="index">
+          <swiper-item>
+            <view class="swiper-item {{item}}">内容 {{index}}</view>
+          </swiper-item>
+        </block>
+</swiper >
+<!--滑块内容结束  -->
+
+<!-- 滑动菜单 -->
+<scroll-view 	scroll-x   class="scroll-test">
+            <!-- <text style="width: 100%; height: 150rpx; background-color: yellow;">内容 {{1}}</text>
+            <text style="width: 100%; height: 150rpx; background-color: yellow;">内容 {{2}}</text>
+            <text style="width: 100%; height: 150rpx; background-color: yellow;">内容 {{3}}</text>
+            <text style="width: 100%; height: 150rpx; background-color: yellow;">内容 {{4}}</text>
+            <text style="width: 100%; height: 150rpx; background-color: yellow;">内容 {{5}}</text>
+            <text style="width: 100%; height: 150rpx; background-color: yellow;">内容 {{6}}</text>
+            <text style="width: 100%; height: 150rpx; background-color: yellow;">内容 {{7}}</text>
+            <text style="width: 100%; height: 150rpx; background-color: yellow;">内容 {{8}}</text>
+            <text style="width: 100%; height: 150rpx; background-color: yellow;">内容 {{9}}</text>
+            <text style="width: 100%; height: 150rpx; background-color: yellow;">内容 {{10}}</text>
+            <text style="width: 100%; height: 150rpx; background-color: yellow;">内容 {{11}}</text> -->
+</scroll-view>
+
+<van-tabs active="{{ active }}" bind:change="onChange">
+  <van-tab title="推荐">
+  <view class="content">
+  <!-- 产品图片的链接 产品的描述 产品的价格 产品的销量 -->
+  <block wx:for="{{9}}" wx:key="index" >
+     <product-show src="{{'../../static/test-product/redminTurbo.png'}}" product_name="{{'商品名称'}}" description="{{'这是描述这是描述这是描述这是描述这是描述这是描述这是描述这是描述这是描述这是描述'}}"  price="{{'22'}}" sale="{{'999+'}}" id="{{'12138'+index}}"class="child" bind:todetails="todetails"></product-show>  
+  </block>
+  <!-- 回到顶部 -->
+  <return-top class="back-top" bind:tap="backTop" wx:if="{{isShowBack}}"/>
+  </view>
+  </van-tab>
+  <van-tab title="零食">
+  <block wx:for="{{9}}" wx:key="index">
+      <!-- <view style="height: 300rpx;width: 200rpx; background-color: red;"></view> -->
+  </block>
+
+  
+  </van-tab>
+  <van-tab title="衣物">内容 2</van-tab>
+  <van-tab title="生鲜">内容 3</van-tab>
+
+</van-tabs>
+
+</view>

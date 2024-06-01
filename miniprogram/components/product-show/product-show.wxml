@@ -1,0 +1,16 @@
+<!--components/product-show/product-show.wxml-->
+<!-- 产品展示页面 -->
+
+<view class="product-show-wraper" bind:tap="ontap">
+<view class="img">
+<!-- 图片 -->
+<image src="{{src}}" mode=""/>
+</view>
+<view class="desc">
+<!-- 描述 -->
+<text>{{product_name}}{{description}}</text>
+</view>
+<!-- 价格 销量 -->
+<view class="price-wrapper"><text class="price">¥{{price}} </text> <text class="price-sale">月销{{sale}} </text>  </view>
+</view>
+

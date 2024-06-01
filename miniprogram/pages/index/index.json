@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "navigation-bar": "/components/navigation-bar/navigation-bar",
+    "index-bar" : "/components/index-bar/index-bar",
+    "return-top" : "/components/return-top/return-top",
+    "product-show" : "/components/product-show/product-show",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index"
+  }
+}

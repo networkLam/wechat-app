@@ -1,0 +1,13 @@
+{
+  "usingComponents": {
+    
+    "navigation-bar": "/components/navigation-bar/navigation-bar",
+    "block-grid":"/components/block-grid/block-grid",
+    "icon-botton" : "/components/icon-botton/icon-botton",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-grid": "@vant/weapp/grid/index",
+    "van-grid-item": "@vant/weapp/grid-item/index"
+    
+  }
+}

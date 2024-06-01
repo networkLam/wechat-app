@@ -1,0 +1,9 @@
+<!--pages/collection/collection.wxml-->
+<!-- this collection page -->
+<navigation-bar title="收藏" back="{{true}}" color="black" background="#fff" class="navigation-top"></navigation-bar>
+<view class="collection-wrapper">
+<block wx:for="{{20}}" wx:key="index">
+   <search-block />
+</block>
+<return-top class="back-top" bind:tap="backTop" wx:if="{{isShowBack}}"/>
+</view>

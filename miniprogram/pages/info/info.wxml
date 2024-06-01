@@ -1,0 +1,35 @@
+<!--pages/info/info.wxml-->
+<navigation-bar title="我的信息" back="{{false}}" color="black" background="#fff"></navigation-bar>
+<view id="wrapper">
+<view>
+<!-- 用户登录信息 -->
+<view class="userInfo" bind:tap="gotoDetail">
+<image src="../../static/UserDefault/UserIcon.svg" mode=""  style="height: 142rpx;width: 142rpx;border-radius: 50%;"/>  <view style="padding-left: 20rpx;"><text style="font-size:44rpx ;">{{user_info.user_name == '' ? "点击登录": user_info.user_name}}</text></view> <image src="../../static/point/jiantou.svg" mode="" style="height: 30rpx;width: 30rpx;float: right;padding-right: 30rpx;"/>  
+</view>
+</view>
+<view class="listShow">
+<block-grid title="{{'我的订单'}}" Msg="{{'全部'}}" >
+<view >
+<van-grid  gutter="{{0}}" column-num="5" border="{{false}}">
+  <van-grid-item use-slot wx:for="{{myOrder_Init}}" wx:key="index" bind:click="toPage" data-num="{{index}}">
+    <icon-botton show_icon="{{item.src}}" show_text="{{item.name}}" >
+    </icon-botton>
+  </van-grid-item>
+</van-grid>
+</view>
+</block-grid>
+</view>
+
+<view class="listShow">
+<block-grid title="{{'收藏与足迹'}}" Msg="{{'全部'}}" >
+<view >
+<van-grid  gutter="{{0}}" column-num="5" border="{{false}}">
+  <van-grid-item icon="star-o" text="收藏" url="/pages/collection/collection" />
+  <van-grid-item icon="flag-o" text="足迹"  />
+</van-grid>
+</view>
+</block-grid>
+</view>
+
+
+</view>

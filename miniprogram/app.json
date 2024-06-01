@@ -1,0 +1,62 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/cart/cart",
+    "pages/info/info",
+    "pages/msg/msg",
+    "pages/UserDetail/UserDetail",
+    "pages/addressManage/addressManage",
+    "pages/aboutOur/aboutOur",
+    "pages/Login/Login",
+    "pages/productDetails/productDetails",
+    "pages/search/search",
+    "pages/collection/collection"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  },
+  "rendererOptions": {
+    "skyline": {
+      "defaultDisplayBlock": true,
+      "disableABTest": true,
+      "sdkVersionBegin": "3.0.0",
+      "sdkVersionEnd": "15.255.255"
+    }
+  },
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "tabBar": {
+    "selectedColor": "#f35114f",
+    "backgroundColor": "#fff",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath":"./static/icon/home_unselected.png",
+        "selectedIconPath" : "./static/icon/home.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath":"./static/icon/cart.png",
+        "selectedIconPath" : "./static/icon/cart_unselected.png"
+      },
+      {
+        "pagePath": "pages/msg/msg",
+        "text": "消息",
+        "iconPath":"./static/icon/msg_unselected.png",
+        "selectedIconPath" : "./static/icon/msg.png"
+      },
+      {
+        "pagePath": "pages/info/info",
+        "text": "我的",
+        "iconPath":"./static/icon/my_unselected.png",
+        "selectedIconPath" : "./static/icon/my.png"
+      }
+    ]
+  }
+}

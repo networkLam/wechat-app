@@ -1,0 +1,15 @@
+<!--components/block-grid/block-grid.wxml-->
+<view class="grid-wrapper">
+<view class="title">
+<view><text class="firs-title">{{title}}</text></view>
+<view><text class="miniText">{{Msg}}</text><image src="../../static/point/jiantou.svg" mode=""  style="height: 26rpx;width: 26rpx;padding-right: 10rpx;"/></view>
+</view>
+
+<view class="grid-content-wrapper"> 
+<view class="grid-content"> 
+<slot></slot>
+</view>
+</view>
+
+
+</view>
