@@ -51,8 +51,6 @@ Page({
     request(URL.USERINFO,"GET")
     .then((res:any)=>{
       const data = res.data.data;
-      // console.log(data)
-      // console.log(res)
      if(res.data.data === "NOT_LOGIN"){
       // wx.setStorageSync("token","");
        wx.removeStorageSync("token");

@@ -81,6 +81,7 @@ Page({
  async send_login_in(){
     // console.log(this.data.phone)
     // console.log(this.data.Password)
+    //还需要判断一下手机号和用户名是否为空
     Toast.loading({
       message:"登录中...",
       forbidClick:true,
