@@ -4,12 +4,7 @@ import URL from "../../utils/URL"
 interface PageNum{
   num:number
 }
-interface UserInfo{
-  gender:string,
-  phone:string,
-  user_name:string,
-  src ? :string
-}
+
 
 
 Page({
@@ -74,6 +69,7 @@ Page({
       this.setData({
         login:false
       })
+      console.log("与服务器通信失败！")
       console.log(err)
     })
   },
