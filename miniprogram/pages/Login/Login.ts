@@ -109,6 +109,9 @@ Page({
       setTimeout(()=>{
          Toast.clear();
       },8000)
+    }).catch(err=>{
+      Toast.fail("连接服务器失败!");
+      console.log(err);
     })
  
   },

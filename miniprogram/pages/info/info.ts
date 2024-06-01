@@ -71,6 +71,12 @@ Page({
       })
       // console.log(this.data.user_info)
       
+    }).catch(err=>{
+      wx.removeStorageSync("token");
+      this.setData({
+        login:false
+      })
+      console.log(err)
     })
   },
 
