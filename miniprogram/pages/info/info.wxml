@@ -4,7 +4,7 @@
 <view>
 <!-- 用户登录信息 -->
 <view class="userInfo" bind:tap="gotoDetail">
-<image src="../../static/UserDefault/UserIcon.svg" mode=""  style="height: 142rpx;width: 142rpx;border-radius: 50%;"/>  <view style="padding-left: 20rpx;"><text style="font-size:44rpx ;">{{user_info.user_name == '' ? "点击登录": user_info.user_name}}</text></view> <image src="../../static/point/jiantou.svg" mode="" style="height: 30rpx;width: 30rpx;float: right;padding-right: 30rpx;"/>  
+<image src="../../static/UserDefault/UserIcon.svg" mode=""  style="height: 142rpx;width: 142rpx;border-radius: 50%;"/>  <view style="padding-left: 20rpx;"><text style="font-size:44rpx ;">{{login == false ? "点击登录": user_info.user_name}}</text></view> <image src="../../static/point/jiantou.svg" mode="" style="height: 30rpx;width: 30rpx;float: right;padding-right: 30rpx;"/>  
 </view>
 </view>
 <view class="listShow">

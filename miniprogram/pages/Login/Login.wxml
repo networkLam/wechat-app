@@ -52,7 +52,7 @@
   model:value="{{ confirm }}"
     type="password"
     label="确认密码"
-    placeholder="请输入一遍密码"
+    placeholder="请再次输入密码"
     required
     border="{{ false }}"
   />
@@ -64,7 +64,7 @@
 <van-button round type="info" bind:tap="send_login_in" size="normal" hairline wx:if="{{isLogin}}"> <text class="text-button" >登录</text> </van-button>
 <van-button round type="info" bind:tap="send_sign_up" size="normal" hairline wx:if="{{!isLogin}}"> <text class="text-button" >注册</text> </van-button>
 </view>
-<view class="forgot_pwd"><view><text>忘记密码</text></view></view>
+<view class="forgot_pwd"><view><text bind:tap="forgotpwd">忘记密码</text></view></view>
 
 
 <view class="sign-up" bind:tap="sign_up">
