@@ -152,8 +152,6 @@ Page({
     })
   },
   collection(){
-    // console.log("collection")
-    // console.log(this.data.pd_id)
    //如果isCollection 为true那么就express is hava collection ,
    if(!this.data.isCollection){
     request(URL.ADDCOLLECTION+this.data.pd_id,"GET").then((res:any)=>{

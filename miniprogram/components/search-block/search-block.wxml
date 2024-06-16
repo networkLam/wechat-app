@@ -1,11 +1,11 @@
 <!--components/search-block/search-block.wxml-->
 <view class="search-block-wrapper">
 <view class="search-block-img">
-<image src="../../static/test-product/redmi1.png" mode="" />
+<image src="{{src}}" mode="" />
 </view>
 <view class="search-block-text">
 <!-- 此处描述可以使用字符串截断 -->
-<view class="search-block-description"><text>【购机赠蓝牙耳机】Redmi Turbo 3新品红米notet</text></view>
-<view class="search-block-price-region"><text class="search-block-price"><text class="CNY">¥</text>{{"9999"}}</text><text class="search-block-sale">月销{{'200'}}</text></view>
+<view class="search-block-description"><text>{{describe}}</text></view>
+<view class="search-block-price-region"><text class="search-block-price"><text class="CNY">¥</text>{{price}}</text><text class="search-block-sale">月销{{'999+'}}</text></view>
 </view>
 </view>

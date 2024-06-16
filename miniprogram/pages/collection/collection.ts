@@ -1,13 +1,31 @@
 // pages/collection/collection.ts
 import request from "../../utils/request"
 import URL from "../../utils/URL"
+interface RequestBody{
+  id:number,
+  uid:number,
+  pd_id:number,
+  date:string
+}
+interface RequestData{
+  code:string,
+  data:RequestBody[],
+  msg:string
+}
+interface ProductList{
+  describe:string,
+  price:string,
+  src:string,
+  id:number
+}
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    isShowBack:false
+    isShowBack:false,
+    product_list :[] as ProductList[]
   },
 
   /**
@@ -29,8 +47,27 @@ Page({
    */
   onShow() {
     //请求收藏的数据
-    request(URL.GETCOLLECTION,"GET").then(res=>{
-      console.log(res);
+    request(URL.GETCOLLECTION,"GET").then((res:any)=>{
+      const data:RequestData = res.data;
+      const temp_arr = [] as any[];
+      data.data.forEach( async (item,index)=>{
+          const pd_id = item.pd_id;
+         await request(URL.GETPRODUCTINFO+pd_id,'GET').then((res:any)=>{
+              const temp_obj = {describe:"",price:"",src:"",id:0};
+              const {data} = res.data;
+              temp_obj.describe = data.p_describe;
+              temp_obj.price = data.price;
+              temp_obj.src = "http://localhost:8080/upload/" + data.picture_name;
+              temp_obj.id = pd_id;
+              temp_arr.push(temp_obj);
+              //console.log(temp_obj)
+          })
+          this.setData({
+            product_list:temp_arr
+          })
+          // console.log("长度是：",this.data.product_list.length)
+      })
+      // console.log(this.data.product_list)
     })
   },
 
@@ -85,5 +122,18 @@ Page({
     wx.pageScrollTo({
       scrollTop:0
     })
+  },
+  jump(e:any){
+    //take out ontap the id
+    const index = e.currentTarget.dataset.k;
+   const pd_id = this.data.product_list[index].id;
+   const {describe} = this.data.product_list[index];
+   const {price} = this.data.product_list[index];
+    console.log(pd_id)
+    //got it id after jump product detail page
+    wx.navigateTo({
+      url: "/pages/productDetails/productDetails?id=" + pd_id+'&describe='+describe+'&price='+price,
+    })
+
   }
 })
