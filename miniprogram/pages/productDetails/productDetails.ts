@@ -178,5 +178,43 @@ Page({
       }
     })
    }
+  },
+  addCart(){
+    //console.log("add cart list")
+    if(this.data.show == true){
+      //弹窗弹起后才能执行的逻辑
+      if(this.data.selected == true){
+        //发起网络请求到购物车中
+        console.log("lunch network request --> additional into cart ")
+        this.setData({ show: false });
+      }else{
+        wx.showToast({
+          title:"请选择规格",
+          icon:"error"
+        })
+      }
+    }else{
+      //弹窗没弹起就先弹起
+      this.setData({ show: true });
+    }
+  },
+  //重要的业务逻辑
+  buy(){
+    if(this.data.show == true){
+      //弹窗弹起后才能执行的逻辑
+      if(this.data.selected == true){
+        //jump to order page
+        console.log("lunch network request --> buy ")
+        this.setData({ show: false });
+      }else{
+        wx.showToast({
+          title:"请选择规格",
+          icon:"error"
+        })
+      }
+    }else{
+      //弹窗没弹起就先弹起
+      this.setData({ show: true });
+    }
   }
 })

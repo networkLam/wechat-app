@@ -59,9 +59,9 @@
   <van-goods-action-button
     text="加入购物车"
     type="warning"
-    bind:click="onClickButton"
+    bind:click="addCart"
   />
-  <van-goods-action-button text="立即购买" bind:click="onClickButton" />
+  <van-goods-action-button text="立即购买" bind:click="buy" />
 </van-goods-action>
 </view>
 
@@ -70,7 +70,7 @@
   <view class="popup-wrapper">
     <view class="content">
     <!-- 加个选中和没选中的样式 -->
-    <view bind:tap="onselected"><text class="check {{selected == true ? 'activity':''}}">默认</text></view>
+    <view bind:tap="onselected"><text class="check {{selected == true ? 'activity':''}}">默认规格x1</text></view>
     </view>
   </view>
   </van-popup>
