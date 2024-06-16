@@ -1,11 +1,26 @@
 /**index.less**/
-page {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
 .index-wrapper{
   margin-top: 170rpx;
+  .search{
+    margin-top: 10rpx;
+    margin-bottom: 10rpx;
+    width: 100%;
+    height: 80rpx;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    .background{
+      margin-top: 10rpx;
+      margin-bottom: 10rpx;
+      width: 90%;
+      height: 60rpx;
+      border-radius: 16px;
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
 
 }
 .scrollarea {
@@ -81,10 +96,20 @@ page {
   background-color: blue;
 }
 
-.scroll-test{
+
+.scroll-x{
+
+  margin:0 auto;
+  width: 96%;
+  // 设置 white-space 属性为 nowrap，这会导致文本不换行，适合横向滚动的布局
   white-space: nowrap;
-  height: 200rpx;
-  width: 100%;
+  // background-color: skyblue;
+  .outside{
+    // 设置 display 属性为 inline-block，这会使元素以内联块级元素的方式显示，可以在同一行内显示多个元素
+    display: inline-block;
+    width: 300rpx;
+    height: 80rpx;
+  }
 }
 
 

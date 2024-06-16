@@ -1,0 +1,5 @@
+<!--components/minor-item/minor-item.wxml-->
+<view class="minor-wrapper">
+<view class="icon"><image src="{{src}}" mode="" class="img"/></view>
+<view class="desc-view"><text class="desc">{{describe}}</text></view>
+</view>

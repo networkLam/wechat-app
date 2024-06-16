@@ -4,7 +4,9 @@
     "index-bar" : "/components/index-bar/index-bar",
     "return-top" : "/components/return-top/return-top",
     "product-show" : "/components/product-show/product-show",
+    "minior-item": "/components/minor-item/minor-item",
     "van-tab": "@vant/weapp/tab/index",
-    "van-tabs": "@vant/weapp/tabs/index"
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-button": "@vant/weapp/button/index"
   }
 }
