@@ -1,10 +1,11 @@
-
-
+import URL from "../../utils/URL"
+import request from "../../utils/request"
+import Toast from '@vant/weapp/toast/toast';
 // pages/productDetails/productDetails.ts
-interface Msg{
-  id:String,
-  description:String,
-
+interface Picture{
+ pd_id:String,
+ pt_id:String,
+ pt_path:String,
 }
 
 Page({
@@ -15,13 +16,16 @@ Page({
   data: {
     productDetails:{
       picture:['../../static/test-product/redmi1.png','../../static/test-product/redmi2.png','../../static/test-product/redmi3.png',], //展示的图片
+      // picture:[],
       product_name:"【购机赠蓝牙耳机】Redmi Turbo 3",//商品名称
       descript:"新品红米note turbo3手机小米官方旗舰店官网学生拍照智能性能正品小旋风", //产品描述
       price :"1999", //价格
-      sale : "998" ,//月销售
-      show: false
+      sale : "999+" ,//月销售
     },
-    selected:false
+    selected:false,
+    show:false,
+    pd_id : 0,
+    isCollection:false //是否被收藏了
   },
 
   /**
@@ -29,10 +33,44 @@ Page({
    */
   onLoad(e:any) {
     // e里面的有产品的ID拿ID去请求网络即可获取数据
-    console.log(e)
-
+    const id= e.id;
+    this.setData({
+      pd_id:id
+    })
+    const describe = e.describe;
+    const price = e.price;
+    request(URL.GETPRODCUTMOMRPICTURE+id,"GET").then((res:any)=>{
+      // console.log(res)
+      const picture_data = res.data.data;
+      const temp = {
+        picture:[] as string[],
+        product_name:"",//商品名称
+        descript:"", //产品描述
+        price :"", //价格
+        sale : "999+" ,//月销售
+      }
+      temp.descript = describe;
+      temp.price = price;
+      picture_data.forEach((item:Picture,index:any)=>{
+         temp.picture.push(("http://localhost:8080/upload/"+item.pt_path));
+      })
+      this.setData({
+        productDetails:temp
+      })
+    });
+    request(URL.QUERYCOLLECTION+id,'GET').then((res:any)=>{
+      console.log(res)
+      if(res.data.data == 'exist'){
+        this.setData({
+          isCollection:true
+        })
+      }else{
+        this.setData({
+          isCollection:false
+        })
+      }
+    })
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -114,10 +152,33 @@ Page({
     })
   },
   collection(){
-    console.log("collection")
-    wx.showToast({
-      title:"收藏成功",
-      mask:true
+    // console.log("collection")
+    // console.log(this.data.pd_id)
+   //如果isCollection 为true那么就express is hava collection ,
+   if(!this.data.isCollection){
+    request(URL.ADDCOLLECTION+this.data.pd_id,"GET").then((res:any)=>{
+      const msg:string  = res.data.msg;
+      if(msg =='success'){
+        Toast.success(res.data.data);
+        this.setData({
+          isCollection:true
+        })
+      }else{
+        Toast.fail(res.data.data);
+      }
+      // console.log(res)
     })
+   }else{
+    //to do operate of remove
+    request(URL.REMOVECOLLECTION+this.data.pd_id,'GET').then((res:any)=>{
+      // console.log(res)
+      if(res.data.code == '1'){
+        Toast.success(res.data.data);
+        this.setData({
+          isCollection:false
+        })
+      }
+    })
+   }
   }
 })

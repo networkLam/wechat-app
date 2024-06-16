@@ -47,8 +47,10 @@ Component({
    */
   methods: {
     ontap(){
-      const id:string = this.properties.id;
-        this.triggerEvent("todetails",{id});
+      const id = this.properties.id;
+      const describe = this.properties.description;
+      const price = this.properties.price; 
+        this.triggerEvent("todetails",{id,describe,price});
     }
   }
 })
