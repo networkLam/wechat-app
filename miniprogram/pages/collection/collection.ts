@@ -50,24 +50,24 @@ Page({
     request(URL.GETCOLLECTION,"GET").then((res:any)=>{
       const data:RequestData = res.data;
       const temp_arr = [] as any[];
-      data.data.forEach( async (item,index)=>{
-          const pd_id = item.pd_id;
-         await request(URL.GETPRODUCTINFO+pd_id,'GET').then((res:any)=>{
-              const temp_obj = {describe:"",price:"",src:"",id:0};
-              const {data} = res.data;
-              temp_obj.describe = data.p_describe;
-              temp_obj.price = data.price;
-              temp_obj.src = "http://localhost:8080/upload/" + data.picture_name;
-              temp_obj.id = pd_id;
-              temp_arr.push(temp_obj);
-              //console.log(temp_obj)
-          })
-          this.setData({
-            product_list:temp_arr
-          })
-          // console.log("长度是：",this.data.product_list.length)
+      Promise.all(data.data.map(async (item)=>{
+        const pd_id = item.pd_id;
+       await request(URL.GETPRODUCTINFO+pd_id,'GET').then((res:any)=>{
+          const temp_obj = {describe:"",price:"",src:"",id:0};
+          const {data} = res.data;
+          temp_obj.describe = data.p_describe;
+          temp_obj.price = data.price;
+          temp_obj.src = "http://localhost:8080/upload/" + data.picture_name;
+          temp_obj.id = pd_id;
+          temp_arr.push(temp_obj);
       })
-      // console.log(this.data.product_list)
+      })).then(()=>{
+        this.setData({
+          product_list:temp_arr
+        })
+      }).catch(()=>{
+        console.log("get collection list fail")
+      })
     })
   },
 

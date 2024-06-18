@@ -1,0 +1,14 @@
+<!--components/address-item/address-item.wxml-->
+<view>
+<view class="address-wrapper">
+  <view>
+    <view class="address">
+    <view class="main">{{major_address}}</view> 
+    <view class="minor-address">{{minor_address}}</view>
+    </view>
+    <view class="contacts"> <text>{{cantacts}}</text> <text class="phone">{{phone}}</text> </view>
+  </view>
+  <view class="icon" bind:tap="jump_edit"><van-icon name="edit" size="26px"/></view>
+</view>
+<view style="height: 2rpx;width: 70%;margin:0 auto;background-color: #ebebeb;"></view>
+</view>

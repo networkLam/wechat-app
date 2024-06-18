@@ -1,3 +1,9 @@
 <!--pages/addressManage/addressManage.wxml-->
-<navigation-bar title="收货地址管理" back="{{true}}" color="white" background="#0000ff"></navigation-bar>
-<text>pages/addressManage/addressManage.wxml</text>
+<navigation-bar title="收货地址管理" back="{{true}}" color="black" background="#fff"></navigation-bar>
+<view>
+<view style="float: right;margin-right: 20rpx;margin-bottom: 20rpx;" bind:tap="add_address">添加地址</view>
+<block wx:for="{{addresssList}}" wx:key="index">
+   <address-item bind:jump_edit="jump" major_address="{{item.major_address}}" minor_address="{{item.minor_address}}" cantacts="{{item.contacts}}" phone="{{item.phone}}" id="{{item.addId}}"></address-item>
+</block>
+</view>
+<!-- 这个页面是显示地址的 -->

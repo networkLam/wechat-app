@@ -34,8 +34,8 @@ Component({
       value: ""
     },
     amount: {
-      type: String,
-      value: ""
+      type: Number,
+      value: 0
     },
     product_index:{
       type:String,
@@ -53,7 +53,6 @@ Component({
   data: {
     checked: false,
     isSteper:false,
-
   },
 
   /**

@@ -18,7 +18,7 @@
         <view class="product-title">{{title}}{{"goods id :"+goods_id}}</view>
         <view class="product-descript">{{product_type}}</view>
     <view class="descript-price">
-      <view><text class="descript-price-show">¥{{price/100}}</text></view>
+      <view><text class="descript-price-show">¥{{price}}</text></view>
       <view bind:tap="showchange">
       <text class="descript-number-show" wx:if="{{!isSteper}}">x{{amount}}</text>
       <van-stepper value="{{ amount }}" bind:change="changeamount" wx:if="{{isSteper}}" max="8" integer/>

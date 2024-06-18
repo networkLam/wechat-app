@@ -10,4 +10,7 @@ export default {
   ADDCOLLECTION:"/api/collection/add?id=",//添加收藏
   QUERYCOLLECTION:"/api/collection/query/single?id=",//查询某样商品是否已经被收藏了
   REMOVECOLLECTION:"/api/collection/remove?id=",//对商品进行移除操作
+  ADDCART : "/api/cart/add",//添加商品到购物车
+  GETCARTLIST:"/api/cart/query",//获取购物车列表
+  ADDRESSADDITIONAL:"/api/address/add",//添加地址
 }

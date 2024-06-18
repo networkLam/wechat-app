@@ -2,10 +2,11 @@
 <navigation-bar title="编辑个人信息" back="{{true}}" color="black" background="#fff"></navigation-bar>
 <view class="userDetails-wrapper">
   <van-cell-group inset>
-  <van-cell title="头像" is-link value="内容" />
+  <van-cell title="头像" is-link value="暂不支持" />
   <van-cell title="昵称" is-link value="{{userDetail.user_name}}" />
   <van-cell title="性別" is-link value="{{userDetail.gender}}" />
   <van-cell title="手机号" is-link value="{{userDetail.phone}}" />
+  <van-cell title="地址管理" is-link link-type="navigateTo" url="/pages/addressManage/addressManage"/>
 </van-cell-group>
 
 </view>
