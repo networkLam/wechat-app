@@ -3,7 +3,7 @@
 <view>
 <view style="float: right;margin-right: 20rpx;margin-bottom: 20rpx;" bind:tap="add_address">添加地址</view>
 <block wx:for="{{addresssList}}" wx:key="index">
-   <address-item bind:jump_edit="jump" major_address="{{item.major_address}}" minor_address="{{item.minor_address}}" cantacts="{{item.contacts}}" phone="{{item.phone}}" id="{{item.addId}}"></address-item>
+   <address-item bind:jump_edit="jump" major_address="{{item.major_address}}" minor_address="{{item.minor_address}}" cantacts="{{item.contacts}}" phone="{{item.phone}}" add_id="{{item.addId}}" major_origin="{{item.major_origin}}" data-addr="{{item}}" bind:tap="select_add"></address-item>
 </block>
 </view>
 <!-- 这个页面是显示地址的 -->

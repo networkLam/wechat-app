@@ -14,7 +14,7 @@
     </view>
   <view style="position: fixed;bottom: 400rpx;width: 100%;">
     <view style="width: 100%; display: flex; justify-content: center;">
-      <van-button type="danger" round block wx:if="{{isShowDel}}">删除地址</van-button>
+      <van-button type="danger" round block wx:if="{{isShowDel}}" bind:click="del" >删除地址</van-button>
     </view>
   </view>
   <van-popup show="{{ show }}" bind:close="onClose" position="bottom" custom-style="height: 60%;">

@@ -13,4 +13,6 @@ export default {
   ADDCART : "/api/cart/add",//添加商品到购物车
   GETCARTLIST:"/api/cart/query",//获取购物车列表
   ADDRESSADDITIONAL:"/api/address/add",//添加地址
+  UPDATEADDRESS:"/api/address/update",//更新地址信息
+  DELADDRESS:"/api/address/del?id=",//删除某一条地址信息
 }

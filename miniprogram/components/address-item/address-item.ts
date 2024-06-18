@@ -4,25 +4,29 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    major_address:{
-      type:String,
-      value:''
+    major_address: {
+      type: String,
+      value: ''
     },
-    minor_address:{
-      type:String,
-      value:''
+    minor_address: {
+      type: String,
+      value: ''
     },
-    cantacts:{
-      type:String,
-      value:''
+    major_origin: {
+      type: String,
+      value: ''
     },
-    phone:{
-      type:String,
-      value:''
+    cantacts: {
+      type: String,
+      value: ''
     },
-    id:{
-      type:Number,
-      value:0
+    phone: {
+      type: String,
+      value: ''
+    },
+    add_id: {
+      type: Number,
+      value: 0
     }
   },
 
@@ -37,15 +41,19 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    jump_edit(){
+    jump_edit() {
       const parms = {
         major_address: this.properties.major_address,
-        minor_address:this.properties.minor_address,
-        cantacts:this.properties.cantacts,
-        phone:this.properties.phone,
-        id:this.properties.id
+        minor_address: this.properties.minor_address,
+        major_origin:this.properties.major_origin,
+        cantacts: this.properties.cantacts,
+        phone: this.properties.phone,
+        addId: this.properties.add_id
       }
-      this.triggerEvent("jump_edit",{...parms})
+      this.triggerEvent("jump_edit", { ...parms })
+    },
+    test1(){
+      console.log("...")
     }
   }
 })

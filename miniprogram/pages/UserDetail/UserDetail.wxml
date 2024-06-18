@@ -7,6 +7,7 @@
   <van-cell title="性別" is-link value="{{userDetail.gender}}" />
   <van-cell title="手机号" is-link value="{{userDetail.phone}}" />
   <van-cell title="地址管理" is-link link-type="navigateTo" url="/pages/addressManage/addressManage"/>
+  <van-cell title="退出" is-link value="将退出登录状态" bind:click="loginOut" />
 </van-cell-group>
-
+<van-dialog id="van-dialog" />
 </view>

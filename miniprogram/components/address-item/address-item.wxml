@@ -1,8 +1,8 @@
 <!--components/address-item/address-item.wxml-->
 <view>
-<view class="address-wrapper">
+<view class="address-wrapper" bind:tap="test1">
   <view>
-    <view class="address">
+    <view class="address" >
     <view class="main">{{major_address}}</view> 
     <view class="minor-address">{{minor_address}}</view>
     </view>

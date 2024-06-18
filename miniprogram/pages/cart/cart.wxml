@@ -10,8 +10,8 @@
 <!-- what the help ? unit is CNY cent -->
 <van-submit-bar
   price="{{ price}}"
-  button-text="提交订单"
-  bind:submit="onClickButton"
+  button-text="结算"
+  bind:submit="onSubmit"
   tip="{{ true }}"
 >
   <!-- <van-tag type="primary">全选</van-tag> -->

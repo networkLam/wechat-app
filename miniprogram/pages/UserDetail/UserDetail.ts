@@ -1,4 +1,5 @@
 // pages/UserDetail/UserDetail.ts
+import Dialog from '@vant/weapp/dialog/dialog';
 Page({
 
   /**
@@ -69,5 +70,25 @@ Page({
    */
   onShareAppMessage() {
 
+  },
+  //退出登录
+  loginOut(){
+    // console.log(".....")
+    Dialog.confirm({
+      title: '确认退出',
+      message: '确认退出吗？',
+    })
+      .then(() => {
+        // on confirm
+       wx.clearStorageSync()
+       wx.navigateBack({
+         delta:1
+       })
+       console.log("....")
+      })
+      .catch(() => {
+        // on cancel
+        console.log("这个什么都不做")
+      });
   }
 })

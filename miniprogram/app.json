@@ -12,7 +12,8 @@
     "pages/productDetails/productDetails",
     "pages/search/search",
     "pages/collection/collection",
-    "pages/addressEdit/addressEdit"
+    "pages/addressEdit/addressEdit",
+    "pages/submitOrder/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",

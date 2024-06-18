@@ -221,6 +221,15 @@ Page({
       if (this.data.selected == true) {
         //jump to order page
         console.log("lunch network request --> buy ")
+        //先建数据传到本地仓库
+        const temp_arr = [] as any [];
+        const pd_id = Number(this.data.pd_id)
+        const temp_obj = {pd_id,amount:1};
+        temp_arr.push(temp_obj);
+        wx.setStorageSync("buy",temp_arr)
+        wx.navigateTo({
+          url:`/pages/submitOrder/index`
+        })
         this.setData({ show: false });
       } else {
         wx.showToast({

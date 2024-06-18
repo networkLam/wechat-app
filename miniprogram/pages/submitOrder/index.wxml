@@ -1,0 +1,28 @@
+<!--pages/submitOrder/index.wxml-->
+<view>
+  <navigation-bar title="订单" back="{{true}}" color="black" background="#fff" ></navigation-bar>
+<!-- 要怎么选地址？ -->
+<view class="submit-wrapper">
+<view bind:tap="jump_address" wx:if="{{!isShow}}">
+  <view>点击选择收货信息</view>
+</view>
+<view bind:tap="jump_address" wx:if="{{isShow}}" class="info">
+  <view class="address">{{showInfo.address}}</view>
+  <view class="phone"><text> {{showInfo.contacts}} </text> <text> {{showInfo.phone}} </text> </view>
+</view>
+<block wx:for="{{ShowList}}"  wx:key="index">
+   <van-card
+  num="{{item.amount}}"
+  price="{{item.price * item.amount}}"
+  desc="规格默认x1"
+  title="{{item.title}}"
+  thumb="{{ item.picture }}"
+/>
+</block>
+<van-submit-bar
+  price="{{ 3050 }}"
+  button-text="提交订单"
+  bind:submit="onSubmit"
+/>
+</view>
+</view>
