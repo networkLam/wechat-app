@@ -1,9 +1,8 @@
-<!--pages/waitProduct/index.wxml-->
-<!-- 待发货的ui -->
-<navigation-bar title="待发货" back="{{true}}" color="black" background="#fff" class="navi" />
+<!--pages/waitConfirm/index.wxml-->
+<navigation-bar title="待收货" back="{{true}}" color="black" background="#fff" class="navi" />
 <view style="margin-top: 144rpx;padding-bottom: 30rpx;">
   <block wx:for="{{orders}}" wx:key="key">
-    <view class="order" >
+    <view class="order" bind:tap="jump_order_detail" data-orderdata="{{item}}">
       <view class="order_number">订单编号:{{item.order_number}}</view> 
       <block wx:for="{{item.products}}" wx:for-item="single" wx:for-index="singleIndex" wx:key="key">
         <van-card num="{{single.number_single}}" price="{{single.price}}" desc="默认规格" title="{{single.p_describe}}" thumb="{{ 'http://localhost:8080/upload/'+single.picture_name }}" />

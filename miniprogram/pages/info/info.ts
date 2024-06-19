@@ -134,7 +134,9 @@ Page({
       url: "/pages/waitProduct/index"
      })
     }else if(Pages.num == 2){
-      console.log("to 待收货")
+      wx.navigateTo({
+        url: "/pages/waitConfirm/index"
+       })
     }else if(Pages.num == 3){
       console.log("to待评论")
     }else if(Pages.num == 4){

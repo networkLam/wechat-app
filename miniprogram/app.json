@@ -14,7 +14,9 @@
     "pages/collection/collection",
     "pages/addressEdit/addressEdit",
     "pages/submitOrder/index",
-    "pages/waitProduct/index"
+    "pages/waitProduct/index",
+    "pages/waitConfirm/index",
+    "pages/orderDetail/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",

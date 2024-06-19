@@ -1,7 +1,6 @@
-// pages/waitProduct/index.ts
+// pages/waitConfirm/index.ts
 import URL from "../../utils/URL"
 import request from "../../utils/request"
-
 interface ProductRequest {
   p_describe: String
   p_name: String
@@ -27,23 +26,20 @@ interface RequestOrderData{
   time: string //下单时间
   product : ProductRequest[]
 }
-
-
-
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    orders: [  ] as any[]
+    orders:[] as any[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    request(`/api/order/user/browser?state=wait`,'GET').then((res:any)=>{
+    request(`/api/order/user/browser?state=sign`,'GET').then((res:any)=>{
       const {data} :{data:RequestOrderData[]}= res.data;
       console.log(data);
       this.setData({
@@ -99,5 +95,14 @@ Page({
    */
   onShareAppMessage() {
 
+  },
+  jump_order_detail(e:any){
+    console.log("跳转到订单详情")
+    console.log(e)
+    const {orderdata} = e.currentTarget.dataset;
+    console.log(orderdata)
+    wx.navigateTo({
+      url:"/pages/orderDetail/index?data="+JSON.stringify(orderdata)
+    })
   }
 })

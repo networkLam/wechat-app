@@ -1,9 +1,10 @@
-/* pages/waitProduct/index.wxss */
+/* pages/orderDetail/index.wxss */
+/* pages/waitConfirm/index.wxss */
 .navi {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 2;
+  z-index: 5;
   width: 100%;
 }
 
@@ -46,4 +47,29 @@
 
 .transaction_time {
   text-align: left;
+}
+.footer-container {  
+  position: fixed;  
+  bottom: 0;  
+  left: 0;  
+  right: 0;  
+  display: flex;  
+  justify-content: flex-end; /* 改为右对齐 */  
+  align-items: center;  
+  height: 50px;  
+  background-color: #fff;  
+  padding: 0 10px;  
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);  
+}  
+  
+.button-group {  
+  /* 这个类现在可能不需要了，除非你有特定的样式要应用给按钮组 */  
+  display: flex;  
+  /* 如果不需要额外的间隔，可以移除 */  
+}  
+  
+.footer-button {  
+  /* 宽度可以根据需要调整，或者保持自动以平均分配空间 */  
+  height: 100%;  
+  border-radius: 0;  
 }
