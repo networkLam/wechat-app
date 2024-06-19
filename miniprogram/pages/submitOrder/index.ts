@@ -42,8 +42,8 @@ Page({
     isShow: false,
     OrderList: { add_id: 0, productList: [] } as OrderSubmit,
     howToHere: false, //false表示从商品详情页进入
-    ShowList: [] as any[],
-    price : "" //计算总价格
+    ShowList: [] as ShowData[],
+    price : 0 //计算总价格
   },
   /**
    * 生命周期函数--监听页面加载
@@ -74,6 +74,18 @@ Page({
   onReady() {
 
   },
+  //计算总价
+  onCompute(){
+    let temp_price = 0;
+    this.data.ShowList.forEach((item,index)=>{
+      temp_price += Number( item.amount) * Number(item.price);
+    })
+    console.log("总价是：",temp_price)
+    // temp_price = String(temp_price) ;
+    this.setData({
+      price : temp_price
+    })
+  },
 
   /**
    * 生命周期函数--监听页面显示
@@ -99,12 +111,10 @@ Page({
         console.log("我到要看看你是个什么鬼")
         //从商品详情进入 object 从购物车进入 string
         console.log(typeof(data))
+        //微信比较妖，有时候从storage中获取的数据是string类型有时候又是object类型所以需要判断
         if(typeof(data)  == "string"){
            data = JSON.parse(data)
         }
-        // console.log("数组",test)
-        // const data = JSON.parse(test)
-        // console.log("这是什么？",data)
         const temp_arr = [] as any[];
         Promise.all(data.map(async (item: any) => {
           const productInfoRes: any = await request(URL.GETPRODUCTINFO + item.pd_id, 'GET');
@@ -121,6 +131,7 @@ Page({
           this.setData({
             ShowList: temp_arr
           })
+          this.onCompute();
         })
       })
     } else {
@@ -176,5 +187,17 @@ Page({
     const add_id = wx.getStorageSync("addId");
     console.log("buys:", temp)
     console.log("add_id:", add_id)
-  }
+    const OrderList:OrderSubmit = {add_id,productList:[]}
+    this.data.ShowList.forEach((item,index)=>{
+      const temp = {pd_id:0,amount:0}
+      temp.pd_id = item.id;
+      temp.amount = item.amount;
+      OrderList.productList.push(temp)
+    })
+    console.log("要提交的数据",OrderList)
+     request("/api/user/buy",'POST',{...OrderList}).then((res)=>{
+       console.log(res)
+     })
+  },
+  
 })

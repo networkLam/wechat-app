@@ -13,14 +13,14 @@
 <block wx:for="{{ShowList}}"  wx:key="index">
    <van-card
   num="{{item.amount}}"
-  price="{{item.price * item.amount}}"
+  price="{{item.price}}"
   desc="规格默认x1"
   title="{{item.title}}"
   thumb="{{ item.picture }}"
 />
 </block>
 <van-submit-bar
-  price="{{ 3050 }}"
+  price="{{ price * 100}}"
   button-text="提交订单"
   bind:submit="onSubmit"
 />
