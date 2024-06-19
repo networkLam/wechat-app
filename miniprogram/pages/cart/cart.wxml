@@ -4,7 +4,7 @@
 <view class="manage-product"><text class="cart">购物车</text><text class="text" bind:tap="manage">管理</text></view>
 <view style="margin-bottom: 200rpx;"></view>
 <block wx:for="{{cart_storage}}" wx:key="index">
-  <cart-item goods_id="{{item.id}}" title="{{item.title}}" product_type="{{item.product_type}}" picture="{{item.picture}}" price="{{item.price}}" amount="{{item.amount}}" product_index="{{index}}" bind:oncheck="oncheck"  bind:updateamount="updateamount" showDel="{{isDelete}}"></cart-item>
+  <cart-item goods_id="{{item.id}}" title="{{item.title}}" product_type="{{item.product_type}}" picture="{{item.picture}}" price="{{item.price}}" amount="{{item.amount}}" product_index="{{index}}" bind:oncheck="oncheck"  bind:updateamount="updateamount" showDel="{{isDelete}}" check="{{item.check}}" id="cart"></cart-item>
 </block>
 <view style="margin-top: 50rpx;height: 150rpx;text-align: center;">--------已经到底啦--------</view>
 <!-- what the help ? unit is CNY cent -->

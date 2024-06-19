@@ -3,10 +3,10 @@
 <view class="cart-item-wrapper" bind:touchmove="hiddenChange">
   <!-- checked -->
   <view class="icon" bind:tap="onchecked">
-    <view wx:if="{{checked}}">
+    <view wx:if="{{check}}">
       <image src="../../static/icon/checked.svg" mode="" />
     </view>
-    <view wx:if="{{!checked}}">
+    <view wx:if="{{!check}}">
       <image src="../../static/icon/unchecked.svg" mode="" />
     </view>
   </view>  

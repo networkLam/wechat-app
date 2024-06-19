@@ -67,12 +67,13 @@ Component({
     onchecked() {
       // console.log("click ...")
       // console.log("before ", this.data.checked)
-      this.setData({
-        checked: !this.data.checked
-      })
+      // this.setData({
+      //   checked: !this.data.checked
+      // })
       // console.log("after ", this.data.checked)
-
-      this.triggerEvent("oncheck",{index:this.properties.product_index,check:this.data.checked})
+      // this.triggerEvent("oncheck",{index:this.properties.product_index,check:this.data.checked})
+      //tell leader 
+      this.triggerEvent("oncheck",{index:this.properties.product_index})
     },
     changeamount(e:any){
       // 改变数量
@@ -112,6 +113,12 @@ Component({
           // on cancel
           console.log("delete fail")
         });
-    }
+    },
+    unchecked() {
+      //通过父组件调用 取消所有的勾选
+        this.setData({
+          checked:false
+        })
+    },
   }
 })

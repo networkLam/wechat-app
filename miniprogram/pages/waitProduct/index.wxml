@@ -1,0 +1,8 @@
+<!--pages/waitProduct/index.wxml-->
+<!-- 待发货的ui -->
+<navigation-bar title="待发货" back="{{true}}" color="black" background="#fff"></navigation-bar>
+
+<view>
+  <van-card num="2" price="2.00" desc="描述信息" title="商品标题" thumb="{{ 'https://img01.yzcdn.cn/vant/ipad.jpeg' }}" />
+
+</view>

@@ -81,9 +81,10 @@ Page({
       })).then(() => {
         // 所有请求都完成后，再调用 setData  
         this.setData({
-          cart_storage: temp_arr
+          cart_storage: temp_arr,
+          price : 0
         });
-        console.log(this.data.cart_storage);
+        console.log("cart onShow");
       }).catch((error) => {
         // 处理错误  
         console.error('Error', error);
@@ -127,10 +128,14 @@ Page({
   oncheck(e: any) {
     // get id
     const index: number = Number(e.detail.index);
-    const check: boolean = e.detail.check;
+    // const check: boolean = e.detail.check;
     // get check boolean value confirm
-    this.data.cart_storage[index].check = check;
-    console.log(this.data.cart_storage);
+    this.data.cart_storage[index].check =  !this.data.cart_storage[index].check;
+    const temp = this.data.cart_storage
+    this.setData({
+      cart_storage:temp
+    })
+    // console.log(this.data.cart_storage);
     this.computeAmount();
   },
   computeAmount() {
@@ -185,8 +190,13 @@ Page({
     console.log("需购的商品如下", temp_arr)
     //把数据传到本地仓库里
     wx.setStorageSync("buy", JSON.stringify(temp_arr));
+    wx.setStorageSync("gate", 1);//从购物车进入
     wx.navigateTo({
       url: `/pages/submitOrder/index`
     })
+    //获取子组件实例
+    // const cart_item = this.selectComponent("#cart");
+    // console.log(cart_item)
+    //cart_item.unchecked(); //调用子组件的方法取消勾选
   }
 })

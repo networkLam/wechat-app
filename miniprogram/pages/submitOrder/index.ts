@@ -1,5 +1,6 @@
 import request from '../../utils/request';
 import URL from "../../utils/URL"
+import Toast from '@vant/weapp/toast/toast';
 interface AddressInfo {
   addId: Number
   address: string
@@ -14,7 +15,8 @@ interface OrderDetail {
 interface OrderSubmit {
   // id: Number //暂时不需要用户id
   add_id: Number,
-  productList: OrderDetail[]
+  productList: OrderDetail[],
+  gate:Number
 }
 interface ProductInfo {
   p_describe: string,//描述
@@ -40,7 +42,7 @@ Page({
     addId: 0,
     showInfo: {} as AddressInfo,
     isShow: false,
-    OrderList: { add_id: 0, productList: [] } as OrderSubmit,
+    OrderList: { add_id: 0, productList: [],gate:0 } as OrderSubmit,
     howToHere: false, //false表示从商品详情页进入
     ShowList: [] as ShowData[],
     price : 0 //计算总价格
@@ -182,21 +184,43 @@ Page({
     })
   },
   onSubmit() {
-    console.log("..")
+    // console.log("..")
     const temp = wx.getStorageSync("buy");
     const add_id = wx.getStorageSync("addId");
+    const gate = wx.getStorageSync("gate")
     console.log("buys:", temp)
     console.log("add_id:", add_id)
-    const OrderList:OrderSubmit = {add_id,productList:[]}
+    const OrderList:OrderSubmit = {add_id,productList:[],gate}
     this.data.ShowList.forEach((item,index)=>{
       const temp = {pd_id:0,amount:0}
       temp.pd_id = item.id;
       temp.amount = item.amount;
       OrderList.productList.push(temp)
     })
-    console.log("要提交的数据",OrderList)
-     request("/api/user/buy",'POST',{...OrderList}).then((res)=>{
+    // console.log("要提交的数据",OrderList)
+     request("/api/user/buy",'POST',{...OrderList}).then((res:any)=>{
        console.log(res)
+       const {code} = res.data;
+       if(code == "1"){
+        Toast.loading({
+          message: '提交中...',
+          forbidClick: true,
+          duration:2000,
+          onClose:()=>{
+            Toast({
+              type: 'success',
+              message: '提交成功',
+              duration:2000,
+              onClose: () => {
+                wx.navigateBack({
+                  delta:1
+                })
+              },
+            });
+          }
+        });
+        
+       }
      })
   },
   

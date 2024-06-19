@@ -2,6 +2,7 @@
   "usingComponents": {
     "van-card": "@vant/weapp/card/index",
     "navigation-bar": "/components/navigation-bar/navigation-bar",
-    "van-submit-bar": "@vant/weapp/submit-bar/index"
+    "van-submit-bar": "@vant/weapp/submit-bar/index",
+    "van-toast": "@vant/weapp/toast/index"
   }
 }

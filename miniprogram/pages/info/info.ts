@@ -130,13 +130,15 @@ Page({
     if(Pages.num == 0){
       console.log("to waiting pay page")
     }else if(Pages.num == 1){
-
+     wx.navigateTo({
+      url: "/pages/waitProduct/index"
+     })
     }else if(Pages.num == 2){
-      
+      console.log("to 待收货")
     }else if(Pages.num == 3){
-      
+      console.log("to待评论")
     }else if(Pages.num == 4){
-      
+      console.log("to退款")
     }
   },
   onEvent(e:any){

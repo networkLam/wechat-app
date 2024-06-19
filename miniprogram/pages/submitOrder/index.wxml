@@ -25,4 +25,5 @@
   bind:submit="onSubmit"
 />
 </view>
+<van-toast id="van-toast" />
 </view>

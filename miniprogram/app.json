@@ -13,7 +13,8 @@
     "pages/search/search",
     "pages/collection/collection",
     "pages/addressEdit/addressEdit",
-    "pages/submitOrder/index"
+    "pages/submitOrder/index",
+    "pages/waitProduct/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",
