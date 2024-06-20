@@ -1,7 +1,7 @@
 <!--pages/msg/msg.wxml-->
 <!-- 消息页面 -->
-<navigation-bar title="消息" back="{{false}}" color="white" background="#0000ff"></navigation-bar>
-<text>pages/msg/msg.wxml</text>
+<navigation-bar title="消息" back="{{false}}" color="black" background="#fff"></navigation-bar>
+<van-empty description="无消息" />
 <view>
 {{token}}
 </view>

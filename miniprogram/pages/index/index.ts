@@ -45,6 +45,7 @@ Page({
     active: 0,
     isShowBack: false,
     productData: [{}],//商品的数据
+    page_number : 0
 
 
   },
@@ -119,8 +120,28 @@ Page({
       })
     })
   },
-init(){
-
+onReachBottom(){
+console.log("触底了")
+this.data.page_number += 5;
+request(URL.GETGOODS + this.data.page_number, 'GET').then((res: any) => {
+  const data = res.data.data;
+  const temp_arr: ProductInfo[] = []
+  data.forEach((item: ProductRequest, index: any) => {
+    console.log(item)
+    const temp_obj: ProductInfo = { p_describe: "", pd_id: 0, picture_name: "", price: "" }
+    temp_obj.p_describe = item.p_describe;
+    temp_obj.pd_id = item.pd_id;
+    temp_obj.price = item.price;
+    temp_obj.picture_name = "http://localhost:8080/upload/"+item.picture_name;
+    temp_arr.push(temp_obj);
+  })
+  //合并后再刷新
+  const newArr = this.data.productData.concat(temp_arr) 
+  // console.log(newArr)
+  this.setData({
+    productData:newArr
+  })
+})
 
 },
 

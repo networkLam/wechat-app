@@ -2,7 +2,7 @@
 <!-- <navigation-bar title="" style="position: fixed;top:20rpx;" back="{{false}}" color="white" background="#fff"></navigation-bar> -->
 <view >
 <view class="manage-product"><text class="cart">购物车</text><text class="text" bind:tap="manage">管理</text></view>
-<view style="margin-bottom: 200rpx;"></view>
+<view style="margin-bottom: 250rpx;"></view>
 <block wx:for="{{cart_storage}}" wx:key="index">
   <cart-item goods_id="{{item.id}}" title="{{item.title}}" product_type="{{item.product_type}}" picture="{{item.picture}}" price="{{item.price}}" amount="{{item.amount}}" product_index="{{index}}" bind:oncheck="oncheck"  bind:updateamount="updateamount" showDel="{{isDelete}}" check="{{item.check}}" id="cart"></cart-item>
 </block>

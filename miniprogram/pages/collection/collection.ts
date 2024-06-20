@@ -118,7 +118,7 @@ Page({
     }
   },
   backTop(){
-    console.log("you have clicked this element")
+    // console.log("you have clicked this element")
     wx.pageScrollTo({
       scrollTop:0
     })
