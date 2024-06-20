@@ -134,6 +134,5 @@ Page({
     wx.navigateTo({
       url: "/pages/productDetails/productDetails?id=" + pd_id+'&describe='+describe+'&price='+price,
     })
-
   }
 })

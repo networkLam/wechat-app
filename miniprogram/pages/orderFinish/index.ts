@@ -1,4 +1,4 @@
-// pages/waitProduct/index.ts
+// pages/orderFinish/index.ts
 import URL from "../../utils/URL"
 import request from "../../utils/request"
 import { formatTime } from "../../utils/util"
@@ -27,9 +27,6 @@ interface RequestOrderData{
   time: string //下单时间
   product : ProductRequest[]
 }
-
-
-
 Page({
 
   /**
@@ -43,7 +40,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    request(`/api/order/user/browser?state=wait`,'GET').then((res:any)=>{
+    request(`/api/order/user/browser?state=finish`,'GET').then((res:any)=>{
       const {data} :{data:RequestOrderData[]}= res.data;
       data.forEach((item,index)=>{
         data[index].time = formatTime(new Date(data[index].time))

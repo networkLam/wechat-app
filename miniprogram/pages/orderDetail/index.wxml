@@ -25,10 +25,10 @@
   </view>
  <view class="footer-container">  
   <view class="button-group">  
-    <van-button type="info" style="margin-right: 10rpx;">退货</van-button>
-    <van-button type="primary">确认收货</van-button>
+    <van-button type="info" style="margin-right: 10rpx;" bind:click="refund">退货</van-button>
+    <van-button type="primary" bind:click="onConfirm">确认收货</van-button>
   </view>  
 </view>
 
-
+<van-dialog id="van-dialog" />
 </view>

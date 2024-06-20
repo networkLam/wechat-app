@@ -1,12 +1,30 @@
 // pages/orderDetail/index.ts
+import request from "../../utils/request"
+import URL from "../../utils/URL"
 import { formatTime } from "../../utils/util"
+import Dialog from '@vant/weapp/dialog/dialog';
+interface orders {
+  add_id: Number,
+  address: string,
+  amount: Number,
+  contacts: string,
+  exp_id: string
+  money: Number
+  order_id: string
+  order_number: string
+  phone: string
+  state: string
+  time: string
+  uid: string
+}
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    orders: [] as any[],
+    orders: {} as orders,
     steps: [
       {
         text: '已签收',
@@ -45,7 +63,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(e: any) {
-    console.log("orderDetail")
+    // console.log("orderDetail")
     // console.log(e)
     const { data } = e;
     let temp = JSON.parse(data);
@@ -53,13 +71,11 @@ Page({
     this.setData({
       orders: temp
     })
-    let dateObj = new Date(temp.time);
-    // console.log(dateObj)
-    // console.log(dateObj.getTime())
-    let temp_time = dateObj.getTime() + (1000 * 60 * 60 * 24);
-    console.log(temp_time)
-    let aabb = formatTime(new Date(temp_time));
-    console.log(aabb)
+    // let dateObj = new Date(temp.time);
+    // let temp_time = dateObj.getTime() + (1000 * 60 * 60 * 24);
+    // console.log(temp_time)
+    // let aabb = formatTime(new Date(temp_time));
+    // console.log(aabb)
     const temp_arr = [] as any[];
     const text_arr = ['已签收', '快递派送中', '运送中', '快递已揽件', '已下单'].reverse();
     this.data.steps.forEach((item, index) => {
@@ -77,7 +93,7 @@ Page({
     })
     console.log(temp_arr)
     this.setData({
-      steps:temp_arr
+      steps: temp_arr
     })
   },
 
@@ -128,5 +144,46 @@ Page({
    */
   onShareAppMessage() {
 
+  },
+  //退单
+  refund() {
+    Dialog.confirm({
+      title: '退货',
+      message: '确定退货吗？',
+    })
+      .then(() => {
+        request(`/api/order/user/refund?id=${this.data.orders.order_id}`, 'GET').then((res: any) => {
+          console.log(res)
+          wx.showToast({
+            title: "退货成功",
+            icon: "success",
+            duration: 2000
+          })
+          setTimeout(() => {
+            wx.navigateBack({
+              delta: 2
+            })
+          }, 2500)
+        })
+      })
+      .catch(() => {
+        console.log("取消退货")
+      });
+  },
+  //确认收货
+  onConfirm() {
+    request(`/api/order/user/confirm?id=${this.data.orders.order_id}`, 'GET').then((res: any) => {
+      console.log(res)
+      wx.showToast({
+        title: "确认收货成功",
+        icon: "success",
+        duration: 2000
+      })
+      setTimeout(() => {
+        wx.navigateBack({
+          delta: 2
+        })
+      }, 2500)
+    })
   }
 })

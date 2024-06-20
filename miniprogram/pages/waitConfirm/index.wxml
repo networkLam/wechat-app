@@ -1,6 +1,6 @@
 <!--pages/waitConfirm/index.wxml-->
 <navigation-bar title="待收货" back="{{true}}" color="black" background="#fff" class="navi" />
-<view style="margin-top: 144rpx;padding-bottom: 30rpx;">
+<view style="margin-top: 184rpx;padding-bottom: 30rpx;">
   <block wx:for="{{orders}}" wx:key="key">
     <view class="order" bind:tap="jump_order_detail" data-orderdata="{{item}}">
       <view class="order_number">订单编号:{{item.order_number}}</view> 

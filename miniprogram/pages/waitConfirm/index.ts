@@ -1,6 +1,7 @@
 // pages/waitConfirm/index.ts
 import URL from "../../utils/URL"
 import request from "../../utils/request"
+import { formatTime } from "../../utils/util"
 interface ProductRequest {
   p_describe: String
   p_name: String
@@ -42,6 +43,9 @@ Page({
     request(`/api/order/user/browser?state=sign`,'GET').then((res:any)=>{
       const {data} :{data:RequestOrderData[]}= res.data;
       console.log(data);
+      data.forEach((item,index)=>{
+        data[index].time = formatTime(new Date(data[index].time))
+      })
       this.setData({
         orders : data
       })

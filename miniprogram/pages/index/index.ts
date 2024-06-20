@@ -118,5 +118,28 @@ Page({
         productData:temp_arr
       })
     })
-  }
+  },
+init(){
+
+
+},
+
+  onPullDownRefresh() {
+    request(URL.GETGOODS + 0, 'GET').then((res: any) => {
+      const data = res.data.data;
+      const temp_arr: ProductInfo[] = []
+      data.forEach((item: ProductRequest, index: any) => {
+        console.log(item)
+        const temp_obj: ProductInfo = { p_describe: "", pd_id: 0, picture_name: "", price: "" }
+        temp_obj.p_describe = item.p_describe;
+        temp_obj.pd_id = item.pd_id;
+        temp_obj.price = item.price;
+        temp_obj.picture_name = "http://localhost:8080/upload/"+item.picture_name;
+        temp_arr.push(temp_obj);
+      })
+      this.setData({
+        productData:temp_arr
+      })
+    })
+  },
 })

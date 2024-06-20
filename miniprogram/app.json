@@ -16,11 +16,16 @@
     "pages/submitOrder/index",
     "pages/waitProduct/index",
     "pages/waitConfirm/index",
-    "pages/orderDetail/index"
+    "pages/orderDetail/index",
+    "pages/orderFinish/index",
+    "pages/orderRefund/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationStyle": "custom"
+    "navigationStyle": "custom",
+    "enablePullDownRefresh": true,
+    "backgroundColor": "#efefef",
+    "backgroundTextStyle": "dark"
   },
   "rendererOptions": {
     "skyline": {

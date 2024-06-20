@@ -15,7 +15,7 @@ Page({
   data: {
     listInfo:["收货地址管理","账号与安全","安全中心","意见反馈","关于我们"],
     badge:"10",
-    myOrder_Init:[{name:"待付款",src:"../../static/icon/card.svg"},{name:"待发货",src:"../../static/icon/pack.svg"},{name:"待收货",src:"../../static/icon/transport.svg"},{name:"待评论",src:"../../static/icon/comment.svg"},{name:"退款/售后",src:"../../static/icon/refun.svg"}],
+    myOrder_Init:[{name:"已完成",src:"../../static/icon/finish.svg"},{name:"待发货",src:"../../static/icon/pack.svg"},{name:"待收货",src:"../../static/icon/transport.svg"},{name:"待评论",src:"../../static/icon/comment.svg"},{name:"退款/售后",src:"../../static/icon/refun.svg"}],
     login:false,
     user_info:{gender:"",phone:"",user_name:""}
   },
@@ -128,7 +128,9 @@ Page({
   toPage(e:any){
     const Pages = e.currentTarget.dataset as PageNum;
     if(Pages.num == 0){
-      console.log("to waiting pay page")
+      wx.navigateTo({
+        url: "/pages/orderFinish/index"
+       })
     }else if(Pages.num == 1){
      wx.navigateTo({
       url: "/pages/waitProduct/index"
@@ -140,7 +142,9 @@ Page({
     }else if(Pages.num == 3){
       console.log("to待评论")
     }else if(Pages.num == 4){
-      console.log("to退款")
+      wx.navigateTo({
+        url: "/pages/orderRefund/index"
+       })
     }
   },
   onEvent(e:any){

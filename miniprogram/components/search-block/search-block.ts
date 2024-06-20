@@ -6,7 +6,7 @@ Component({
    */
   properties: {
     //identity of product
-    id:{
+    pd_id:{
       type:String,
       value:""
     },

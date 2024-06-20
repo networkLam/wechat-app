@@ -2,6 +2,7 @@
   "usingComponents": {
     "navigation-bar": "/components/navigation-bar/navigation-bar", 
     "search-block" : "/components/search-block/search-block",
-    "van-search": "@vant/weapp/search/index"
+    "van-search": "@vant/weapp/search/index",
+    "return-top" : "/components/return-top/return-top"
   }
 }

@@ -3,5 +3,9 @@
 <navigation-bar title="寻宝" back="{{true}}" color="black" background="#fff"></navigation-bar>
 <van-search value="{{ serach_key }}" placeholder="请输入搜索关键词"  bind:search="onSearch"  bind:change="onchange"/>
 <view>
-  <search-block></search-block>
+<block wx:for="{{resultData}}" wx:key="index">
+    <search-block pd_id="{{item.pd_id}}" src="{{'http://localhost:8080/upload/'+item.picture_name}}" describe="{{item.p_describe}}" price="{{item.price}}"  bind:tap="jump" data-k="{{index}}"></search-block>
+</block>
+
 </view>
+<return-top class="back-top" bind:tap="backTop" wx:if="{{isShowBack}}" />
