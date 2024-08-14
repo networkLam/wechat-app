@@ -21,61 +21,6 @@ Page({
     isLogin: true
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  },
   onClickIcon(e: any) {
     console.log(e)
   },
@@ -111,8 +56,6 @@ Page({
             }
           })
         }
-        // 定时器有问题
-        //Toast.clear();
       }).catch(err => {
         Toast.fail("连接服务器失败!");
         console.log(err);
@@ -141,7 +84,8 @@ Page({
       request(URL.REGISTER, "POST", { phone: this.data.phone, pwd: this.data.Password })
         .then((res: any) => {
           console.log(res)
-          if (res.data.code == "0") {
+          if (res.data.code == 0) {
+            console.log(res.data.code)
             const msg = res.data.data;
             Dialog.alert({
               title: "错误",
@@ -154,6 +98,7 @@ Page({
               //  isLogin : true
             })
             Dialog.alert({
+              title:"成功",
               message: '注册成功',
             }).then(() => {
               // on close

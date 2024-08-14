@@ -1,11 +1,6 @@
 // index.ts
 // 获取应用实例
 // const app = getApp<IAppOption>()
-// const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
-
-// Component({
-
-// })
 import URL from "../../utils/URL"
 import request from "../../utils/request"
 interface ProductInfo {
@@ -13,6 +8,7 @@ interface ProductInfo {
   pd_id: number,//商品ID
   picture_name: String,//图片路径
   price: String,//价格
+  state: String
 }
 interface ProductRequest {
   p_describe: String
@@ -29,34 +25,13 @@ interface ProductRequest {
 Page({
   data: {
     userData: [{}],
-    background: ['demo-text-1', 'demo-text-2', 'demo-text-3'],
-    swiperNav: {
-      i: 0,
-      x: 0,
-      arr: [
-        { v: 0, txt: "星期一" },
-        { v: 1, txt: "星期二" },
-        { v: 2, txt: "星期三" },
-        { v: 3, txt: "星期四" },
-        { v: 4, txt: "星期五" },
-        { v: 5, txt: "星期六" }
-      ]
-    },
     active: 0,
     isShowBack: false,
     productData: [{}],//商品的数据
-    page_number : 0
-
-
-  },
-  // what's the function did ?
-  showUser() {
-    wx.setStorageSync("key", 'value');
-    return ""
+    page_number: 0
   },
   onChange(event: any) {
     console.log(event.detail)
-
     wx.showToast({
       title: `切换到标签 ${event.detail.name}`,
       icon: 'none',
@@ -67,10 +42,11 @@ Page({
     // console.log(detail)
     const product_id: string = event.target.id;
     const describe = event.detail.describe;
-    const price =  event.detail.price;
+    const price = event.detail.price;
+    const state = event.detail.state;
     // console.log(product_id);
     wx.navigateTo({
-      url: "/pages/productDetails/productDetails?id=" + product_id+'&describe='+describe+'&price='+price,
+      url: "/pages/productDetails/productDetails?id=" + product_id + '&describe=' + describe + '&price=' + price + '&state=' + state,
     })
   },
   tosearch() {
@@ -107,59 +83,58 @@ Page({
       const data = res.data.data;
       const temp_arr: ProductInfo[] = []
       data.forEach((item: ProductRequest, index: any) => {
-        console.log(item)
-        const temp_obj: ProductInfo = { p_describe: "", pd_id: 0, picture_name: "", price: "" }
+        const temp_obj: ProductInfo = { p_describe: "", pd_id: 0, picture_name: "", price: "", state: "" }
         temp_obj.p_describe = item.p_describe;
         temp_obj.pd_id = item.pd_id;
         temp_obj.price = item.price;
-        temp_obj.picture_name = "http://localhost:8080/upload/"+item.picture_name;
+        temp_obj.picture_name = "http://localhost:8080/upload/" + item.picture_name;
+        temp_obj.state = item.state;
         temp_arr.push(temp_obj);
       })
       this.setData({
-        productData:temp_arr
+        productData: temp_arr
       })
     })
   },
-onReachBottom(){
-console.log("触底了")
-this.data.page_number += 5;
-request(URL.GETGOODS + this.data.page_number, 'GET').then((res: any) => {
-  const data = res.data.data;
-  const temp_arr: ProductInfo[] = []
-  data.forEach((item: ProductRequest, index: any) => {
-    console.log(item)
-    const temp_obj: ProductInfo = { p_describe: "", pd_id: 0, picture_name: "", price: "" }
-    temp_obj.p_describe = item.p_describe;
-    temp_obj.pd_id = item.pd_id;
-    temp_obj.price = item.price;
-    temp_obj.picture_name = "http://localhost:8080/upload/"+item.picture_name;
-    temp_arr.push(temp_obj);
-  })
-  //合并后再刷新
-  const newArr = this.data.productData.concat(temp_arr) 
-  // console.log(newArr)
-  this.setData({
-    productData:newArr
-  })
-})
+  onReachBottom() {//触底刷新
+    this.data.page_number += 5;
+    request(URL.GETGOODS + this.data.page_number, 'GET').then((res: any) => {
+      const data = res.data.data;
+      const temp_arr: ProductInfo[] = []
+      data.forEach((item: ProductRequest, index: any) => {
+        const temp_obj: ProductInfo = { p_describe: "", pd_id: 0, picture_name: "", price: "", state: "" }
+        temp_obj.p_describe = item.p_describe;
+        temp_obj.pd_id = item.pd_id;
+        temp_obj.price = item.price;
+        temp_obj.picture_name = "http://localhost:8080/upload/" + item.picture_name;
+        temp_obj.state = item.state;
+        temp_arr.push(temp_obj);
+      })
+      //合并后再刷新
+      const newArr = this.data.productData.concat(temp_arr)
+      // console.log(newArr)
+      this.setData({
+        productData: newArr
+      })
+    })
+  },
 
-},
-
-  onPullDownRefresh() {
+  onPullDownRefresh() {//下拉刷新
+    this.data.page_number=0;
     request(URL.GETGOODS + 0, 'GET').then((res: any) => {
       const data = res.data.data;
       const temp_arr: ProductInfo[] = []
       data.forEach((item: ProductRequest, index: any) => {
-        console.log(item)
-        const temp_obj: ProductInfo = { p_describe: "", pd_id: 0, picture_name: "", price: "" }
+        const temp_obj: ProductInfo = { p_describe: "", pd_id: 0, picture_name: "", price: "", state: "" }
         temp_obj.p_describe = item.p_describe;
         temp_obj.pd_id = item.pd_id;
         temp_obj.price = item.price;
-        temp_obj.picture_name = "http://localhost:8080/upload/"+item.picture_name;
+        temp_obj.picture_name = "http://localhost:8080/upload/" + item.picture_name;
+        temp_obj.state = item.state;
         temp_arr.push(temp_obj);
       })
       this.setData({
-        productData:temp_arr
+        productData: temp_arr
       })
     })
   },

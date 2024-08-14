@@ -32,10 +32,6 @@ Page({
    */
   // 价格的单位要换成分 cent
   data: {
-
-    // {id:"",picture:"",price:"", check:true,amount:"" }
-    // cart_storage: [{ id: 12138, title: "【购机赠蓝牙耳机】Redmi Turbo 3", picture: "../../static/test-product/redmi1.png", price: "199900", product_type: "默认", check: false, amount: 2 },
-    // { id: 12139, title: "【购机赠蓝牙耳机】Redmi Turbo 3", picture: "../../static/test-product/redmi2.png", price: "199900", product_type: "默认", check: false, amount: 1 }, { id: 12140, title: "【购机赠蓝牙耳机和钢化膜】Redmi Turbo 3", picture: "../../static/test-product/redmi2.png", price: "199998", product_type: "默认", check: false, amount: 1 }] as ShowCart[],
     cart_storage: [] as ShowCart[],
     //  show total amount price
     price: 0,
@@ -43,19 +39,7 @@ Page({
     isDelete: false
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad() {
 
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
 
   /**
    * 生命周期函数--监听页面显示
@@ -91,40 +75,7 @@ Page({
       });
     });
   },
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  },
+ 
   oncheck(e: any) {
     // get id
     const index: number = Number(e.detail.index);
@@ -194,9 +145,5 @@ Page({
     wx.navigateTo({
       url: `/pages/submitOrder/index`
     })
-    //获取子组件实例
-    // const cart_item = this.selectComponent("#cart");
-    // console.log(cart_item)
-    //cart_item.unchecked(); //调用子组件的方法取消勾选
   }
 })

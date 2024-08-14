@@ -15,7 +15,6 @@ Component({
       type: String,
       value: ""
     },
-    // {id:"",picture:"",price:"", check:true,amount:"" } 
     // 商品是否被勾选
     check: {
       type: Boolean,
@@ -65,23 +64,12 @@ Component({
       });
     },
     onchecked() {
-      // console.log("click ...")
-      // console.log("before ", this.data.checked)
-      // this.setData({
-      //   checked: !this.data.checked
-      // })
-      // console.log("after ", this.data.checked)
-      // this.triggerEvent("oncheck",{index:this.properties.product_index,check:this.data.checked})
-      //tell leader 
       this.triggerEvent("oncheck",{index:this.properties.product_index})
     },
     changeamount(e:any){
       // 改变数量
-    //  console.log(e.detail)
      const num = e.detail;
-    //  console.log("before update",this.properties.amount)
      this.triggerEvent("updateamount",{num,index : this.properties.product_index})
-    //  console.log("after update",this.properties.amount)
     
     },
     showchange(){

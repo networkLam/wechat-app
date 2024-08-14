@@ -21,6 +21,7 @@ Page({
       descript: "新品红米note turbo3手机小米官方旗舰店官网学生拍照智能性能正品小旋风", //产品描述
       price: "1999", //价格
       sale: "999+",//月销售
+      state:""
     },
     selected: false,
     show: false,
@@ -39,6 +40,7 @@ Page({
     })
     const describe = e.describe;
     const price = e.price;
+    const state = e.state;
     request(URL.GETPRODCUTMOMRPICTURE + id, "GET").then((res: any) => {
       // console.log(res)
       const picture_data = res.data.data;
@@ -48,9 +50,11 @@ Page({
         descript: "", //产品描述
         price: "", //价格
         sale: "999+",//月销售
+        state:""
       }
       temp.descript = describe;
       temp.price = price;
+      temp.state = state;//状态 上下架
       picture_data.forEach((item: Picture, index: any) => {
         temp.picture.push(("http://localhost:8080/upload/" + item.pt_path));
       })
@@ -71,54 +75,7 @@ Page({
       }
     })
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
 
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  },
   back() {
     console.log("go back privious page")
     wx.navigateBack({
@@ -186,6 +143,14 @@ Page({
       if (this.data.selected == true) { //用户必须选择了规格后才能添加到购物车或或者购买
         //发起网络请求到购物车中
         // console.log("lunch network request --> additional into cart ")
+        if(this.data.productDetails.state != '上架'){ //商品必须是上架状态才可加入购物车或者购买
+          wx.showToast({
+            title:"商品已下架",
+            icon:"error",
+            duration:2000
+          })
+          return;
+        }
         request(URL.ADDCART, 'POST', {
           pd_id: this.data.pd_id
         }).then((res: any) => {
@@ -221,6 +186,14 @@ Page({
       if (this.data.selected == true) {
         //jump to order page
         // console.log("lunch network request --> buy ")
+        if(this.data.productDetails.state != '上架'){ //商品必须是上架状态才可加入购物车或者购买
+          wx.showToast({
+            title:"商品已下架",
+            icon:"error",
+            duration:2000
+          })
+          return;
+        }
         //先建数据传到本地仓库
         const temp_arr = [] as any [];
         const pd_id = Number(this.data.pd_id)

@@ -1,6 +1,5 @@
 <!--index.wxml-->
-<!-- <navigation-bar title="仓储式量贩订购" back="{{false}}" color="white" background="#0000ff"></navigation-bar> -->
-<index-bar location="{{'广州天河'}}" bind:ontap="tosearch"></index-bar>
+<index-bar location="{{'广州'}}" bind:ontap="tosearch"></index-bar>
 <view class="index-wrapper">
   <view class="search">
     <view class="background" bind:tap="tosearch">
@@ -15,18 +14,6 @@
       </view>
     </view>
   </view>
-
-
-  <!-- 滑块内容 -->
-  <!-- <swiper indicator-dots="{{true}}" autoplay="{{true}}" easing-function="linear" indicator-type="jump">
-    <block wx:for="{{background}}" wx:key="index">
-      <swiper-item>
-        <view class="swiper-item {{item}}">内容 {{index}}</view>
-      </swiper-item>
-    </block>
-  </swiper> -->
-  <!--滑块内容结束  -->
-
   <view style="background-color: #f4f4f4;margin: 12rpx 0;">
     <!-- 滑动菜单 -->
     <scroll-view scroll-x class="scroll-x">
@@ -48,18 +35,12 @@
       </view>
     </scroll-view>
   </view>
-
   <view class="content">
     <!-- 产品图片的链接 产品的描述 产品的价格 产品的销量 -->
     <block wx:for="{{productData}}" wx:key="index">
-      <product-show src="{{item.picture_name}}" product_name="{{''}}" description="{{item.p_describe}}" price="{{item.price}}" sale="{{'999+'}}" id="{{item.pd_id}}" class="child" bind:todetails="todetails"></product-show>
+      <product-show src="{{item.picture_name}}" product_name="{{''}}" description="{{item.p_describe}}" price="{{item.price}}" sale="{{'999+'}}" id="{{item.pd_id}}" state="{{item.state}}" class="child" bind:todetails="todetails"></product-show>
     </block>
     <!-- 回到顶部 -->
     <return-top class="back-top" bind:tap="backTop" wx:if="{{isShowBack}}" />
   </view>
-
-
-
-
-
 </view>

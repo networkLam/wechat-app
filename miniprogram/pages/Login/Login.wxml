@@ -6,7 +6,6 @@
 <view class="head-text"><text>{{isLogin == true ? '登录' : '注册'}}</text></view>
 </view>
 
-
 <!-- 登录组件 -->
 <view class="login-fiel">
 <!-- 这放登录框 -->
@@ -78,9 +77,6 @@
 </view>
 
 <view>
-<!-- 这放图片 -->
-<!-- <image src="../../static/login/footer.png" mode=""/> -->
-
 </view>
 <van-dialog id="van-dialog" />
 <van-toast id="van-toast" />

@@ -1,5 +1,4 @@
 <!--pages/productDetails/productDetails.wxml-->
-<!-- <navigation-bar title="购物车" back="{{true}}" color="white" background="#0000ff"></navigation-bar> -->
 <view class="product-details-wrapper">
 <!-- 返回箭头 -->
 <view class="back" bind:tap="back" ><image src="../../static/point/jiantou.svg" mode="" style="transform: rotate(180deg);height: 30rpx;width: 30rpx;" /></view>

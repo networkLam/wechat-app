@@ -51,31 +51,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(e: any) {
-    //两个分支 从购物车页面进入和从商品详情页进入
-    // console.log(e)
-    //这里接收所有的数据 然后计价
-    // const type = e.type;
-    // console.log("type is ", type)
-    // if (type == "false") {
-    //   this.data.howToHere = false;
-    //   const pd_id = e.pd_id;//获取商品id
-    //   console.log("pd_id : ", pd_id);
-    //   this.data.OrderList.add_id = wx.getStorageSync("addId"); //获取绑定的地址id
-    //   const buyList = JSON.stringify([{ pd_id, amount: 1 }]); //将对象转成字符串
-    //   wx.setStorageSync("buy", buyList)//设置购买的列表
-    // } else {
-    //   //购物车界面进入
-    //   this.data.howToHere = true;
-    // }
+
 
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
   //计算总价
   onCompute(){
     let temp_price = 0;
@@ -143,40 +122,6 @@ Page({
     }
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  },
   jump_address() {
     //跳到地址管理页面
     wx.navigateTo({
@@ -185,11 +130,9 @@ Page({
   },
   onSubmit() {
     // console.log("..")
-    const temp = wx.getStorageSync("buy");
+    // const temp = wx.getStorageSync("buy");
     const add_id = wx.getStorageSync("addId");
     const gate = wx.getStorageSync("gate")
-    console.log("buys:", temp)
-    console.log("add_id:", add_id)
     const OrderList:OrderSubmit = {add_id,productList:[],gate}
     this.data.ShowList.forEach((item,index)=>{
       const temp = {pd_id:0,amount:0}
@@ -199,7 +142,6 @@ Page({
     })
     // console.log("要提交的数据",OrderList)
      request("/api/user/buy",'POST',{...OrderList}).then((res:any)=>{
-       console.log(res)
        const {code} = res.data;
        if(code == "1"){
         Toast.loading({
@@ -219,9 +161,7 @@ Page({
             });
           }
         });
-        
        }
      })
   },
-  
 })
