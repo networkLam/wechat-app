@@ -82,7 +82,7 @@ Page({
     request(URL.GETGOODS + 0, 'GET').then((res: any) => {
       const data = res.data.data;
       const temp_arr: ProductInfo[] = []
-      data.forEach((item: ProductRequest, index: any) => {
+      data.forEach((item: ProductRequest) => {
         const temp_obj: ProductInfo = { p_describe: "", pd_id: 0, picture_name: "", price: "", state: "" }
         temp_obj.p_describe = item.p_describe;
         temp_obj.pd_id = item.pd_id;
@@ -101,7 +101,7 @@ Page({
     request(URL.GETGOODS + this.data.page_number, 'GET').then((res: any) => {
       const data = res.data.data;
       const temp_arr: ProductInfo[] = []
-      data.forEach((item: ProductRequest, index: any) => {
+      data.forEach((item: ProductRequest) => {
         const temp_obj: ProductInfo = { p_describe: "", pd_id: 0, picture_name: "", price: "", state: "" }
         temp_obj.p_describe = item.p_describe;
         temp_obj.pd_id = item.pd_id;
@@ -124,7 +124,7 @@ Page({
     request(URL.GETGOODS + 0, 'GET').then((res: any) => {
       const data = res.data.data;
       const temp_arr: ProductInfo[] = []
-      data.forEach((item: ProductRequest, index: any) => {
+      data.forEach((item: ProductRequest) => {
         const temp_obj: ProductInfo = { p_describe: "", pd_id: 0, picture_name: "", price: "", state: "" }
         temp_obj.p_describe = item.p_describe;
         temp_obj.pd_id = item.pd_id;
