@@ -7,7 +7,7 @@
         <image src="../../static/minor_icon/search.png" mode="" style="width: 40rpx;height: 40rpx;margin-top: 1px;margin-left: 12px;" />
       </view>
       <view style="width: 70%;padding-left: 12rpx;">
-        <text style="color: rgb(195 193 193);font-size: 28rpx;">搜你想买</text>
+        <text style="color: rgb(195 193 193); font-size: 28rpx">搜你想买</text>
       </view>
       <view>
         <view style="background-color: red;border-radius: 16px;height: 56rpx;width: 140rpx;color: #fff;margin-right: 8px;text-align: center;line-height: 28px;"> 搜索 </view>
