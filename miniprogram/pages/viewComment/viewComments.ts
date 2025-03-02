@@ -1,3 +1,5 @@
+import request from "../../utils/request";
+
 // pages/viewComments.ts
 Page({
 
@@ -20,11 +22,21 @@ Page({
       }],
   },
 
+  loadingData(pdId:number,offset:number){
+    request(`/api/readComment?pdId=${pdId}&offset=${offset}`,'POST').then((res:any)=>{
+      console.log('data is ',res)
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(e:any) {
     console.log(e)
+    const pd_id = e.productId;
+    this.loadingData(pd_id,0);
+    //loading product reviews data
+    // request('/api/readComment',)
   },
 
   /**

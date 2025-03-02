@@ -228,7 +228,7 @@ Page({
   viewComment(){
     console.log("comment view")
     wx.navigateTo({
-      url:"/pages/viewComment/viewComments?productId="+"66",
+      url:"/pages/viewComment/viewComments?productId="+this.data.pd_id,
     })
   }
 })
