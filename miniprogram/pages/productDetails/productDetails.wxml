@@ -36,7 +36,7 @@
 
 <!-- 商品评论 -->
 <view class="comment">
-<view class="comment-title"><text>商品评价(2)</text> <view style="display: flex;align-items: center;"> <text class="show-all">查看全部</text><image src="../../static/point/jiantou.svg" mode="" style="transform: rotate(0deg); height: 15px; width: 15px;" /></view> </view>
+<view class="comment-title" bind:tap="viewComment"><text>商品评价(2)</text> <view style="display: flex;align-items: center;"> <text class="show-all">查看全部</text><image src="../../static/point/jiantou.svg" mode="" style="transform: rotate(0deg); height: 15px; width: 15px;" /></view> </view>
 <view class="comment-block">
 <view class="comment-icon"> <!--用户头像 --> <image src="../../static/comment/boy.svg" mode="" style="width: 70rpx;height: 70rpx;border-radius: 50%;"/> <text class="comment-name">陆仁贾</text></view>
 <view class="comment-comment"><text>非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！</text></view>

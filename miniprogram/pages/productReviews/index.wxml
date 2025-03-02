@@ -1,0 +1,19 @@
+<!--pages/productReviews/index.wxml-->
+<van-nav-bar title="评价商品" left-text="返回" right-text="按钮" left-arrow bind:click-left="onClickLeft" fixed />
+
+<view class="reviews-wrapper">
+  <view style="text-align: center;"> <text>描述相符</text>
+    <van-rate value="{{ stars }}" bind:change="onChange" />
+  </view>
+  <view style="border: 1px solid #f6f6f6;margin-top: 10rpx;">
+     <textarea  class="input-container" auto-focus="true" bindinput="handleInput" placeholder="请输入评价内容..."/>
+  </view>
+  <view>
+  <!-- 图片评论 -->
+  <van-uploader file-list="{{ fileList }}" bind:after-read="afterRead" />
+  </view>
+  <view style="width: 100%;text-align: center;">
+    <van-button type="primary"  round bind:click="onSubmit">发布</van-button>
+  </view>
+  <van-toast id="van-toast" />
+</view>

@@ -8,20 +8,33 @@ interface Picture {
   pt_path: String,
 }
 
-Page({
+interface ProductDetail {
+  pictureList: { pt_id: number, pt_path: string, pd_id: number }[],
+  product: {
+    number_signle: string,
+    p_describe: string,
+    p_name: string,
+    pd_id: number,
+    pd_type: string,
+    picture_name: string,
+    price: string,
+    state: string,
+    time: string
+  }
+}
 
+Page({
   /**
    * 页面的初始数据
    */
   data: {
     productDetails: {
-      picture: ['../../static/test-product/redmi1.png', '../../static/test-product/redmi2.png', '../../static/test-product/redmi3.png',], //展示的图片
-      // picture:[],
-      product_name: "【购机赠蓝牙耳机】Redmi Turbo 3",//商品名称
-      descript: "新品红米note turbo3手机小米官方旗舰店官网学生拍照智能性能正品小旋风", //产品描述
-      price: "1999", //价格
+      picture: [] as string[],//展示的图片
+      product_name: "暂无",//商品名称
+      descript: "暂无描述", //产品描述
+      price: "0", //价格
       sale: "999+",//月销售
-      state:""
+      state: "上架"
     },
     selected: false,
     show: false,
@@ -38,30 +51,27 @@ Page({
     this.setData({
       pd_id: id
     })
-    const describe = e.describe;
-    const price = e.price;
-    const state = e.state;
-    request(URL.GETPRODCUTMOMRPICTURE + id, "GET").then((res: any) => {
+    // const describe = e.describe;
+    // const price = e.price;
+    // const state = e.state;
+    request('/api/product/info?pdId=' + id, 'GET').then((res: any) => {
       // console.log(res)
-      const picture_data = res.data.data;
-      const temp = {
-        picture: [] as string[],
-        product_name: "",//商品名称
-        descript: "", //产品描述
-        price: "", //价格
-        sale: "999+",//月销售
-        state:""
-      }
-      temp.descript = describe;
-      temp.price = price;
-      temp.state = state;//状态 上下架
-      picture_data.forEach((item: Picture, index: any) => {
-        temp.picture.push(("http://localhost:8080/upload/" + item.pt_path));
+      const data: ProductDetail = res.data.data;
+      const temp: any = { picture: [] as string[] };
+      temp['product_name'] = data.product.p_name;
+      temp['price'] = data.product.price;
+      temp['p_describe'] = data.product.p_describe;
+      temp['state'] = data.product.state;
+      temp['sale'] = "999+"
+      data.pictureList.forEach(item => {
+        temp.picture.push(("http://localhost:8080/upload/" + item.pt_path))
       })
       this.setData({
         productDetails: temp
       })
-    });
+    })
+
+   
     request(URL.QUERYCOLLECTION + id, 'GET').then((res: any) => {
       // console.log(res)
       if (res.data.data == 'exist') {
@@ -143,11 +153,11 @@ Page({
       if (this.data.selected == true) { //用户必须选择了规格后才能添加到购物车或或者购买
         //发起网络请求到购物车中
         // console.log("lunch network request --> additional into cart ")
-        if(this.data.productDetails.state != '上架'){ //商品必须是上架状态才可加入购物车或者购买
+        if (this.data.productDetails.state != '上架') { //商品必须是上架状态才可加入购物车或者购买
           wx.showToast({
-            title:"商品已下架",
-            icon:"error",
-            duration:2000
+            title: "商品已下架",
+            icon: "error",
+            duration: 2000
           })
           return;
         }
@@ -166,7 +176,6 @@ Page({
           //添加到购物车后关闭popup
           this.setData({ show: false });
         })
-
       } else {
         //打开了弹窗，但是没有选择规格
         wx.showToast({
@@ -186,23 +195,23 @@ Page({
       if (this.data.selected == true) {
         //jump to order page
         // console.log("lunch network request --> buy ")
-        if(this.data.productDetails.state != '上架'){ //商品必须是上架状态才可加入购物车或者购买
+        if (this.data.productDetails.state != '上架') { //商品必须是上架状态才可加入购物车或者购买
           wx.showToast({
-            title:"商品已下架",
-            icon:"error",
-            duration:2000
+            title: "商品已下架",
+            icon: "error",
+            duration: 2000
           })
           return;
         }
         //先建数据传到本地仓库
-        const temp_arr = [] as any [];
+        const temp_arr = [] as any[];
         const pd_id = Number(this.data.pd_id)
-        const temp_obj = {pd_id,amount:1};
+        const temp_obj = { pd_id, amount: 1 };
         temp_arr.push(temp_obj);
-        wx.setStorageSync("buy",temp_arr)
-        wx.setStorageSync("gate",0) //单买设为0
+        wx.setStorageSync("buy", temp_arr)
+        wx.setStorageSync("gate", 0) //单买设为0
         wx.navigateTo({
-          url:`/pages/submitOrder/index`
+          url: `/pages/submitOrder/index`
         })
         this.setData({ show: false });
       } else {
@@ -215,5 +224,11 @@ Page({
       //弹窗没弹起就先弹起
       this.setData({ show: true });
     }
+  },
+  viewComment(){
+    console.log("comment view")
+    wx.navigateTo({
+      url:"/pages/viewComment/viewComments?productId="+"66",
+    })
   }
 })

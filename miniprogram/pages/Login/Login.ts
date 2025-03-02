@@ -3,9 +3,14 @@ import Dialog from '@vant/weapp/dialog/dialog';
 import request from '../../utils/request';
 import URL from "../../utils/URL"
 import Toast from '@vant/weapp/toast/toast';
+interface ResponseContent{
+  token:string,
+  user:{id:number,phone:string,user_name:string,gender:string,register_time:string,roles:string}
+}
+
 interface Data {
   code: string,//错误代码
-  data: string,//数据区域
+  data: ResponseContent,//数据区域
   msg: string//返回该消息的内容
 }
 Page({
@@ -41,14 +46,16 @@ Page({
     await request(URL.LOGIN, "POST", { phone: this.data.phone, user_pwd: this.data.Password })
       .then((res: any) => {
         const data_: Data = res.data;
+        console.log(res)
         if (data_.code === '0') {
-          Toast.fail(data_.data);
+          Toast.fail(data_.msg);
         } else if (data_.code === '1') {
           Toast.success(data_.msg)
+          console.log("token="+data_.data.token)
           //登录完成后保存token
           wx.setStorage({
             key: "token",
-            data: data_.data,
+            data: data_.data.token,
             success: () => {
               // console.log("登录成功")
               //登录成功后返回“我的”界面

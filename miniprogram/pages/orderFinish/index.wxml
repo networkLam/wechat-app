@@ -2,12 +2,21 @@
 <navigation-bar title="完成" back="{{true}}" color="black" background="#fff" class="navi" />
 <view style="margin-top: 184rpx;padding-bottom: 30rpx;">
   <block wx:for="{{orders}}" wx:key="key">
-    <view class="order" bind:tap="jump_order_detail" data-orderdata="{{item}}">
-      <view class="order_number">订单编号:{{item.order_number}}</view> 
+    <view class="order" data-orderdata="{{item}}">
+      <view class="order_number">订单编号:{{item.order_number}}</view>
       <block wx:for="{{item.products}}" wx:for-item="single" wx:for-index="singleIndex" wx:key="key">
-        <van-card num="{{single.number_single}}" price="{{single.price}}" desc="默认规格" title="{{single.p_describe}}" thumb="{{ 'http://localhost:8080/upload/'+single.picture_name }}" />
+        <van-card num="{{single.number_single}}" price="{{single.price}}" desc="默认规格" title="{{single.p_describe}}" thumb="{{ 'http://localhost:8080/upload/'+single.picture_name }}">
+          <view slot="footer">
+            <!-- <van-button size="mini" style="margin-right:15px">按钮</van-button> -->
+            <van-button disabled="{{single.comment == '0'?false:true}}" size="mini" bind:click="evaluate" data-pdid="{{single.pd_id}}" data-orderid="{{item.order_id}}">评价</van-button>
+          </view>
+        </van-card>
+
       </block>
-      <view class="amount"> <view class="transaction_time">下单时间:{{item.time}}</view> <view > 合计:<text class="value">{{item.money}} </text> </view> </view>
+      <view class="amount">
+        <view class="transaction_time">下单时间:{{item.time}}</view>
+        <view> 合计:<text class="value">{{item.money}} </text> </view>
+      </view>
     </view>
   </block>
 </view>

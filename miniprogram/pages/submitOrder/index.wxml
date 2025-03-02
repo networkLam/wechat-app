@@ -1,29 +1,22 @@
 <!--pages/submitOrder/index.wxml-->
 <view>
-  <navigation-bar title="订单" back="{{true}}" color="black" background="#fff" ></navigation-bar>
-<!-- 要怎么选地址？ -->
-<view class="submit-wrapper">
-<view bind:tap="jump_address" wx:if="{{!isShow}}">
-  <view>点击选择收货信息</view>
-</view>
-<view bind:tap="jump_address" wx:if="{{isShow}}" class="info">
-  <view class="address">{{showInfo.address}}</view>
-  <view class="phone"><text> {{showInfo.contacts}} </text> <text> {{showInfo.phone}} </text> </view>
-</view>
-<block wx:for="{{ShowList}}"  wx:key="index">
-   <van-card
-  num="{{item.amount}}"
-  price="{{item.price}}"
-  desc="规格默认x1"
-  title="{{item.title}}"
-  thumb="{{ item.picture }}"
-/>
-</block>
-<van-submit-bar
-  price="{{ price * 100}}"
-  button-text="提交订单"
-  bind:submit="onSubmit"
-/>
-</view>
-<van-toast id="van-toast" />
+  <navigation-bar title="订单" back="{{true}}" color="black" background="#fff"></navigation-bar>
+  <!-- 要怎么选地址？ -->
+  <view class="submit-wrapper">
+    <!-- <view bind:tap="jump_address" wx:if="{{!isShow}}">
+  <view style="height: 30px;width: 100%;background-color: red;">点击选择收货信息</view>
+</view> -->
+    <view bind:tap="jump_address" class="info">
+      <view wx:if="{{!isShow}}">点击选择收货信息</view>
+      <view wx:if="{{isShow}}">
+        <view class="address">{{showInfo.address}}</view>
+        <view class="phone"><text> {{showInfo.contacts}} </text> <text> {{showInfo.phone}} </text> </view>
+      </view>
+    </view>
+    <block wx:for="{{ShowList}}" wx:key="index">
+      <van-card num="{{item.amount}}" price="{{item.price}}" desc="规格默认x1" title="{{item.title}}" thumb="{{ item.picture }}" />
+    </block>
+    <van-submit-bar price="{{ price * 100}}" button-text="提交订单" bind:submit="onSubmit" />
+  </view>
+  <van-toast id="van-toast" />
 </view>

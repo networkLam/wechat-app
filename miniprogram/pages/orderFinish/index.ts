@@ -40,6 +40,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
+    //查询用户已完成的交易
     request(`/api/order/user/browser?state=finish`,'GET').then((res:any)=>{
       const {data} :{data:RequestOrderData[]}= res.data;
       data.forEach((item,index)=>{
@@ -49,6 +50,18 @@ Page({
       this.setData({
         orders : data
       })
+    })
+  },
+
+  evaluate(data:any){
+    console.log(data)
+    const pdId = data.currentTarget.dataset.pdid;//要评价的商品id
+    console.log(pdId) 
+    const orderId = data.currentTarget.dataset.orderid;//要评价的商品id
+    console.log(orderId)
+    //going to evaluate page carry ID at now
+    wx.navigateTo({
+      url:`/pages/productReviews/index?pdid=${pdId}&orderid=${orderId}`
     })
   },
 

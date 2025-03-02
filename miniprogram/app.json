@@ -18,7 +18,9 @@
     "pages/waitConfirm/index",
     "pages/orderDetail/index",
     "pages/orderFinish/index",
-    "pages/orderRefund/index"
+    "pages/orderRefund/index",
+    "pages/viewComment/viewComments",
+    "pages/productReviews/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",

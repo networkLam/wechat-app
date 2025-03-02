@@ -15,4 +15,6 @@ export default {
   ADDRESSADDITIONAL:"/api/address/add",//添加地址
   UPDATEADDRESS:"/api/address/update",//更新地址信息
   DELADDRESS:"/api/address/del?id=",//删除某一条地址信息
+  UPLOADFILE:"/api/upload", //上传图片
+  ADDCOMMENT:"/api/addedComment",//添加评论
 }
