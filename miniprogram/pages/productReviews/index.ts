@@ -45,7 +45,7 @@ Page({
     commentDTO.comment = this.data.comment;
     commentDTO.stars = this.data.stars;
     console.log(commentDTO)
-    if(commentDTO.stars != 0 && commentDTO.comment != ''){
+    if(commentDTO.stars == 0 && commentDTO.comment == ''){
       Toast('内容不完整，请检查！');
       return;
     }

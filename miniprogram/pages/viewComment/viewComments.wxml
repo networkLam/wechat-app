@@ -12,7 +12,7 @@
           <view style="display: flex;align-items: center;">
             <image src="../../static/comment/boy.svg" mode="" style="width: 70rpx;height: 70rpx;border-radius: 50%;" /> <text class="comment-name">{{item.userName}}</text>
           </view>
-          <view style="display: flex;align-items: center;margin-right: 20rpx;"><text>{{item.pushlishDate}}</text></view>
+          <view style="display: flex;align-items: center;margin-right: 20rpx;"><text>{{item.publishDate}}</text></view>
         </view>
         <view style="display: flex;justify-content: flex-end;margin-right: 20rpx;">
           <view style="background-color:white;border: 1px solid white;border-radius: 10px;padding: 6rpx;width: 90%;">

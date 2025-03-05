@@ -1,5 +1,14 @@
 import request from "../../utils/request";
 
+//评论浏览
+interface ProductReviews {
+  userName: string,
+  gender: string, //0 female 1 men
+  publishDate: string,//发布日期
+  comment: string,
+  images: string[]
+}
+
 // pages/viewComments.ts
 Page({
 
@@ -7,34 +16,45 @@ Page({
    * 页面的初始数据
    */
   data: {
-      comments:[{
-        userName:"陆仁贾",
-        gender:"0", //0 female 1 men
-        pushlishDate:"2025/3/1",//发布日期
-        comment:"非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！非常好的产品！！",
-        images:['../../static/login/head-bg.png','../../static/login/head-bg.png','../../static/login/head-bg.png','../../static/login/head-bg.png']
-      },{
-        userName:"炮灰乙",
-        gender:"1", //0 female 1 men
-        pushlishDate:"2025/3/1",//发布日期
-        comment:"非常赞的产品！！",
-        images:['../../static/login/head-bg.png','../../static/login/head-bg.png','../../static/login/head-bg.png']
-      }],
+    pdId: 0,
+    offset: 0,
+    comments: [] as ProductReviews[], 
   },
 
-  loadingData(pdId:number,offset:number){
-    request(`/api/readComment?pdId=${pdId}&offset=${offset}`,'POST').then((res:any)=>{
-      console.log('data is ',res)
+  loadingData(pdId: number, offset: number) {
+    request(`/api/readComment?pdId=${pdId}&offset=${offset}`, 'POST').then((res: any) => {
+      // console.log('data is ', res)
+      const { data }: { data: ProductReviews[] } = res.data;
+      console.log(data)
+      if (data instanceof Array) {
+        data.forEach(item => {
+          if (!item.images) {
+            item.images = [];//避免null错误
+          }
+        })
+        this.setData({
+          comments: [...this.data.comments, ...data]
+        })
+      } else {
+        wx.showToast({
+          title: "暂无更多评论",
+          icon: "none",
+          duration: 2000
+        })
+      }
+
+
     })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(e:any) {
+  onLoad(e: any) {
     console.log(e)
     const pd_id = e.productId;
-    this.loadingData(pd_id,0);
+    this.data.pdId = e.productId;
+    this.loadingData(pd_id, 0);
     //loading product reviews data
     // request('/api/readComment',)
   },
@@ -78,7 +98,9 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {
-
+    this.data.offset += 5;
+    this.loadingData(this.data.pdId, this.data.offset); //加装数据
+    console.log('offset = ', this.data.offset)
   },
 
   /**
@@ -95,4 +117,6 @@ Page({
   onClickRight() {
     wx.showToast({ title: '点击按钮', icon: 'none' });
   },
+
+
 })

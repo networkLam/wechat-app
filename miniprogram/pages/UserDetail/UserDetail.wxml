@@ -2,12 +2,33 @@
 <navigation-bar title="编辑个人信息" back="{{true}}" color="black" background="#fff"></navigation-bar>
 <view class="userDetails-wrapper">
   <van-cell-group inset>
-  <van-cell title="头像" is-link value="暂不支持" />
-  <van-cell title="昵称" is-link value="{{userDetail.user_name}}" />
-  <van-cell title="性別" is-link value="{{userDetail.gender}}" />
-  <van-cell title="手机号" is-link value="{{userDetail.phone}}" />
-  <van-cell title="地址管理" is-link link-type="navigateTo" url="/pages/addressManage/addressManage"/>
-  <van-cell title="退出" is-link value="将退出登录状态" bind:click="loginOut" />
-</van-cell-group>
-<van-dialog id="van-dialog" />
+    <van-cell title="头像" is-link value="暂不支持" />
+    <van-cell title="昵称" is-link value="{{userDetail.user_name}}" bind:click="modifyName" />
+    <van-cell title="性別" is-link value="{{userDetail.gender}}" bind:click="modifyGender" />
+    <van-cell title="手机号" is-link value="{{userDetail.phone}}" />
+    <van-cell title="地址管理" is-link link-type="navigateTo" url="/pages/addressManage/addressManage" />
+    <van-cell title="退出" is-link value="将退出登录状态" bind:click="loginOut" />
+  </van-cell-group>
+  <van-dialog id="van-dialog" />
+  <van-dialog use-slot title="修改名称" show="{{ modifyNameDialog }}" show-cancel-button bind:cancel="onCloseOfNname" bind:confirm="submitName">
+    <view> <input type="text" value="{{temporaryName}}" style="border: 1px solid #fefefe;" bindinput="changeName" /> </view>
+
+  </van-dialog>
+
+  <van-dialog use-slot title="修改性别" show="{{ modifyGenderDialog }}" show-cancel-button 
+  bind:confirm="submitGender"
+  >
+    <van-radio-group value="{{ temporaryGender }}" bind:change="onChangeGender">
+      <van-cell-group>
+        <van-cell title="男" clickable data-gender="男" bind:click="onClickGender">
+          <van-radio slot="right-icon" name="男" />
+        </van-cell>
+        <van-cell title="女" clickable data-gender="女" bind:click="onClickGender">
+          <van-radio slot="right-icon" name="女" />
+        </van-cell>
+      </van-cell-group>
+    </van-radio-group>
+  </van-dialog>
+
+
 </view>

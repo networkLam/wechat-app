@@ -6,12 +6,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "miniprogram-api-typings": "^3.12.2"
+    "miniprogram-api-typings": "^4.0.5"
   },
   "main": ".eslintrc.js",
   "description": "",
   "dependencies": {
     "@vant/area-data": "^1.5.1",
-    "@vant/weapp": "^1.11.4"
+    "@vant/weapp": "^1.11.7"
   }
 }

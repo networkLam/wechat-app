@@ -23,6 +23,14 @@ interface ProductDetail {
   }
 }
 
+interface ProductReviews {
+  userName: string,
+  gender: string, //男 or 女
+  publishDate: string,//发布日期
+  comment: string,
+  images: string[]
+}
+
 Page({
   /**
    * 页面的初始数据
@@ -39,7 +47,9 @@ Page({
     selected: false,
     show: false,
     pd_id: 0,
-    isCollection: false //是否被收藏了
+    isCollection: false, //是否被收藏了
+    reviewsCount: 0, //评论数
+    reviews:[] as ProductReviews[],//评论
   },
 
   /**
@@ -55,7 +65,7 @@ Page({
     // const price = e.price;
     // const state = e.state;
     request('/api/product/info?pdId=' + id, 'GET').then((res: any) => {
-      // console.log(res)
+      console.log("product details=", res)
       const data: ProductDetail = res.data.data;
       const temp: any = { picture: [] as string[] };
       temp['product_name'] = data.product.p_name;
@@ -66,12 +76,18 @@ Page({
       data.pictureList.forEach(item => {
         temp.picture.push(("http://localhost:8080/upload/" + item.pt_path))
       })
+      const { count }: { count: number } = res.data.data;
+      //get comment information 
+      const {commentInfo}:{commentInfo:ProductReviews[]} = res.data.data;
+
       this.setData({
-        productDetails: temp
+        productDetails: temp,
+        reviewsCount: count,
+        reviews:commentInfo
       })
     })
 
-   
+
     request(URL.QUERYCOLLECTION + id, 'GET').then((res: any) => {
       // console.log(res)
       if (res.data.data == 'exist') {
@@ -225,10 +241,10 @@ Page({
       this.setData({ show: true });
     }
   },
-  viewComment(){
+  viewComment() {
     console.log("comment view")
     wx.navigateTo({
-      url:"/pages/viewComment/viewComments?productId="+this.data.pd_id,
+      url: "/pages/viewComment/viewComments?productId=" + this.data.pd_id,
     })
   }
 })
