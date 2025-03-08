@@ -20,7 +20,8 @@
     "pages/orderFinish/index",
     "pages/orderRefund/index",
     "pages/viewComment/viewComments",
-    "pages/productReviews/index"
+    "pages/productReviews/index",
+    "pages/waitReviews/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",

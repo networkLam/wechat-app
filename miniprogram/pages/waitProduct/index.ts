@@ -49,6 +49,13 @@ Page({
         data[index].time = formatTime(new Date(data[index].time))
       })
       console.log(data);
+      if(data.length === 0){
+        wx.showToast({
+          title:"暂无订单",
+          icon:"none",
+          duration:3000
+        })
+      }
       this.setData({
         orders : data
       })

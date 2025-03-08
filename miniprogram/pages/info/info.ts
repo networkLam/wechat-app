@@ -141,6 +141,9 @@ Page({
        })
     }else if(Pages.num == 3){
       console.log("to待评论")
+      wx.navigateTo({
+        url:"/pages/waitReviews/index"
+      })
     }else if(Pages.num == 4){
       wx.navigateTo({
         url: "/pages/orderRefund/index"

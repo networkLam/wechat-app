@@ -1,5 +1,9 @@
 this project in devloping status...
 
+# update 2025Y 3M 8D
+修改用户收藏接口返回的数据格式；
+产品增加分类数据
+
 # update 2025Y 3M 5D
 增加用户修改性别和名称接口，增加商品评论接口；
 

@@ -1,5 +1,4 @@
-// pages/orderFinish/index.ts
-import URL from "../../utils/URL"
+// pages/waitReviews/index.ts
 import request from "../../utils/request"
 import { formatTime } from "../../utils/util"
 interface ProductRequest {
@@ -27,36 +26,68 @@ interface RequestOrderData {
   time: string //下单时间
   product: ProductRequest[]
 }
+//待评价的商品信息
+interface WaitReviews {
+  comment: string
+  id: number
+  number: number
+  order_id: number
+  p_describe: string
+  p_name: string
+  pd_id: number
+  picture_name: string
+  time: string
+  totals: string
+}
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    orders: [] as any[]
+    orders: [] as any[],
+    waitReviews: [] as WaitReviews[],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    request(`/api/order/user/browser?state=refund`, 'GET').then((res: any) => {
+    //查询用户已完成的交易
+    request(`/api/order/user/browser?state=finish`, 'GET').then((res: any) => {
       const { data }: { data: RequestOrderData[] } = res.data;
-      console.log(data);
-      if (data.length === 0) {
-        wx.showToast({
-          title:"暂无订单",
-          icon:"none",
-          duration:3000
-        })
-      }
       data.forEach((item, index) => {
         data[index].time = formatTime(new Date(data[index].time))
       })
-
+      console.log(data);
       this.setData({
         orders: data
       })
+    });
+    request("/api/user/notReviews", 'POST').then((res: any) => {
+      console.log('print->', res)
+      const data: WaitReviews[] = res.data.data;
+      if (data.length != 0) {
+        console.log('存在数据')
+        this.setData({
+          waitReviews:data
+        })
+      } else {
+        console.log("不存在数据")
+      }
+    })
+  },
+
+  evaluate(data: any) {
+    console.log(data)
+    const pdId = data.currentTarget.dataset.pdid;//要评价的商品id
+    console.log(pdId)
+    const orderId = data.currentTarget.dataset.orderid;//要评价的订单id
+    console.log(orderId)
+    //going to evaluate page carry ID at now
+    wx.navigateTo({
+      url: `/pages/productReviews/index?pdid=${pdId}&orderid=${orderId}`
     })
   },
 

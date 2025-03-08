@@ -37,6 +37,11 @@ Page({
       icon: 'none',
     });
   },
+
+  toTypePage(e:any){
+    console.log("to type page",e)
+  },
+
   todetails(event: any) {
     //获取产品ID
     // console.log(detail)

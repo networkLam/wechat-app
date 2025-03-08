@@ -18,8 +18,8 @@
     <!-- 滑动菜单 -->
     <scroll-view scroll-x class="scroll-x">
       <view class="outside">
-        <minior-item src="{{'../../static/minor_icon/3c.png'}}" describe="{{'3C数码'}}" />
-        <minior-item src="{{'../../static/minor_icon/clothes.png'}}" describe="{{'美妆服饰'}}" />
+        <minior-item src="{{'../../static/minor_icon/3c.png'}}" describe="{{'3C数码'}}" bind:tap="toTypePage" data-type="01"/>
+        <minior-item src="{{'../../static/minor_icon/clothes.png'}}" describe="{{'美妆服饰'}}" bind:tap="toTypePage" data-type="02"/>
       </view>
       <view class="outside">
         <minior-item src="{{'../../static/minor_icon/fresh.png'}}" describe="{{'生鲜'}}" />

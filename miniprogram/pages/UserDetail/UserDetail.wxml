@@ -11,7 +11,7 @@
   </van-cell-group>
   <van-dialog id="van-dialog" />
   <van-dialog use-slot title="修改名称" show="{{ modifyNameDialog }}" show-cancel-button bind:cancel="onCloseOfNname" bind:confirm="submitName">
-    <view> <input type="text" value="{{temporaryName}}" style="border: 1px solid #fefefe;" bindinput="changeName" /> </view>
+    <view> <input type="text" value="{{temporaryName}}" style="border: 1px solid #fefefe;" bindinput="changeName" auto-focus="true" /> </view>
 
   </van-dialog>
 

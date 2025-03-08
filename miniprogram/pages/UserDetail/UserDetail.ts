@@ -101,7 +101,7 @@ Page({
         //update the user name success;
         if (data.code === '1') {
           wx.showToast({
-            title: "更新成功",
+            title: "修改成功",
             icon: "none",
             duration: 2000
           })
@@ -114,7 +114,7 @@ Page({
         } else {
           //update the user name failure
           wx.showToast({
-            title: "更新失败",
+            title: "修改失败",
             icon: "none",
             duration: 2000
           })
