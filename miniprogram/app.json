@@ -21,7 +21,8 @@
     "pages/orderRefund/index",
     "pages/viewComment/viewComments",
     "pages/productReviews/index",
-    "pages/waitReviews/index"
+    "pages/waitReviews/index",
+    "pages/category/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",

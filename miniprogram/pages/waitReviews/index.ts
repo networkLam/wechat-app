@@ -75,6 +75,11 @@ Page({
         })
       } else {
         console.log("不存在数据")
+        wx.showToast({
+          title:"没有待评论的商品",
+          icon:"none",
+          duration:3000
+        })
       }
     })
   },

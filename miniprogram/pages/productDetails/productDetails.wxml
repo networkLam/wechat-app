@@ -21,7 +21,7 @@
   </view>
   <!-- 描述 -->
   <view class="descript">
-    <text user-select>{{productDetails.product_name}}{{productDetails.descript}}</text>
+    <text user-select>{{productDetails.product_name}}{{productDetails.p_describe}}</text>
   </view>
 
   <!-- 发货信息 服务保障-->

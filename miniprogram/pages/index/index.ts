@@ -40,6 +40,10 @@ Page({
 
   toTypePage(e:any){
     console.log("to type page",e)
+    const data = e.currentTarget.dataset.type;
+    wx.navigateTo({
+      url:`/pages/category/index?category=${data}`
+    })
   },
 
   todetails(event: any) {
