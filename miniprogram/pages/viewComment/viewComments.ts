@@ -18,7 +18,9 @@ Page({
   data: {
     pdId: 0,
     offset: 0,
-    comments: [] as ProductReviews[], 
+    comments: [] as ProductReviews[],
+    imgBase64: "data:image/png;base64,",
+    showDialog: false,
   },
 
   loadingData(pdId: number, offset: number) {
@@ -117,6 +119,28 @@ Page({
   onClickRight() {
     wx.showToast({ title: '点击按钮', icon: 'none' });
   },
+  cloudView() {
+    console.log("view on the world cloud picuture of pd ID", this.data.pdId)
+    request(`/api/wordCloud?pdId=${this.data.pdId}`, 'POST').then((res: any) => {
+      console.log(res)
+      const data = res.data;
+      if (data.code === '1') {
+        let fullFile = 'data:image/png;base64,' + data.data;
+        this.setData({
+          imgBase64: fullFile,
+          showDialog: true,
+        })
+      } else {
+        wx.showToast({
+          title: "暂无词云图",
+          icon: "none",
+          duration: 2000
+        })
+      }
+
+    })
+
+  }
 
 
 })

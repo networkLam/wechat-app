@@ -6,7 +6,7 @@
     <van-rate value="{{ stars }}" bind:change="onChange" />
   </view>
   <view style="border: 1px solid #f6f6f6;margin-top: 10rpx;">
-     <textarea  class="input-container" auto-focus="true" bindinput="handleInput" placeholder="请输入评价内容..."/>
+     <textarea  class="input-container" auto-focus="true" bindinput="handleInput" placeholder="请输入评价内容..." maxlength="750"/>
   </view>
   <view>
   <!-- 图片评论 -->
