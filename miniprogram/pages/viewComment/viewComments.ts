@@ -22,10 +22,9 @@ Page({
     imgBase64: "data:image/png;base64,",
     showDialog: false,
   },
-
+//装载评论数据
   loadingData(pdId: number, offset: number) {
     request(`/api/readComment?pdId=${pdId}&offset=${offset}`, 'POST').then((res: any) => {
-      // console.log('data is ', res)
       const { data }: { data: ProductReviews[] } = res.data;
       console.log(data)
       if (data instanceof Array) {
@@ -44,8 +43,6 @@ Page({
           duration: 2000
         })
       }
-
-
     })
   },
 

@@ -11,7 +11,8 @@
         <view class="comment-icon">
           <!--用户头像 -->
           <view style="display: flex;align-items: center;">
-            <image src="../../static/comment/boy.svg" mode="" style="width: 70rpx;height: 70rpx;border-radius: 50%;" /> <text class="comment-name">{{item.userName}}</text>
+          <!-- src="../../static/comment/boy.svg" -->
+            <image src="{{item.gender==='男'?'../../static/comment/boy.svg':'../../static/comment/girl.svg'}}"  mode="" style="width: 70rpx;height: 70rpx;border-radius: 50%;" /> <text class="comment-name">{{item.userName}}</text>
           </view>
           <view style="display: flex;align-items: center;margin-right: 20rpx;"><text>{{item.publishDate}}</text></view>
         </view>

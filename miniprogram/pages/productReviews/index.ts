@@ -25,10 +25,6 @@ Page({
   },
   //提交评价表单
   onSubmit() {
-    // console.log('submit')
-    // console.log(this.data.stars)
-    // console.log(this.data.fileList)
-    // console.log(this.data.comment)
     const commentDTO: RequestBody = {
       orderId: 0,
       pdId: 0, //商品ID
@@ -45,7 +41,7 @@ Page({
     commentDTO.comment = this.data.comment;
     commentDTO.stars = this.data.stars;
     console.log(commentDTO)
-    if(commentDTO.stars == 0 && commentDTO.comment == ''){
+    if (commentDTO.stars == 0 && commentDTO.comment == '') {
       Toast('内容不完整，请检查！');
       return;
     }
@@ -70,7 +66,6 @@ Page({
         })
       }
     })
-
   },
   // rate function
   onChange(event: any) {

@@ -9,7 +9,8 @@ interface ShowCart {
   price: string,
   product_type: string,
   check: boolean, //false 为不打钩
-  amount: number
+  amount: number,
+  cartId: number
 }
 
 interface RequestData {
@@ -19,6 +20,19 @@ interface RequestData {
   uid?: string,
   join_time?: string
 }
+//查询购物车中的数据
+interface ResponseData {
+  id: number,
+  amount: number,
+  pd_id: number,
+  join_time: string,
+  p_describe: string,
+  p_name: string,
+  pd_type: string,
+  picture_name: string,
+  price: string
+}
+
 interface ProductInfo {
   p_describe: string,//描述
   pd_id: number,//商品ID
@@ -45,46 +59,60 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    this.loadingData();
+  },
+  //从购物车中移除商品
+  removeProductFromCart(e: any) {
+    console.log(e)
+    const cartId = e.detail.cartId;
+    const index = e.detail.index;
+    request(`/api/cart/del?id=${cartId}`, 'POST').then(res => {
+      console.log("移除", res)
+      const temp = this.data.cart_storage;
+      temp.splice(Number(index), 1);
+      this.setData({
+        cart_storage: temp
+      })
+      this.computeAmount();//移除时从新计算一遍价格
+    })
+  },
+
+  loadingData() {
     const temp_arr: ShowCart[] = [];
     request(URL.GETCARTLIST, 'GET').then((res: any) => {
-      const { data }: { data: RequestData[] } = res.data;
-      // 使用 Promise.all 来等待所有异步请求完成  
-      Promise.all(data.map(async (item) => {
-        const productInfoRes: any = await request(URL.GETPRODUCTINFO + item.pd_id, 'GET');
-        const { data: productInfo }: { data: ProductInfo } = productInfoRes.data;
-        const temp_obj: ShowCart = {
-          id: productInfo.pd_id,
-          title: productInfo.p_describe, // 使用商品描述作为标题  
-          picture: "http://localhost:8080/upload/" + productInfo.picture_name,
-          price: productInfo.price,
-          product_type: '',
-          check: false,
-          amount: item.amount
-        };
-        temp_arr.push(temp_obj);
-      })).then(() => {
-        // 所有请求都完成后，再调用 setData  
+      const { data }: { data: ResponseData[] } = res.data;
+      console.log("购物车中的数据", data)
+      if (data.length != 0) {
+        data.forEach((item) => {
+          const temp_obj: ShowCart = {
+            id: item.pd_id,
+            title: item.p_describe, // 使用商品描述作为标题  
+            picture: "http://localhost:8080/upload/" + item.picture_name,
+            price: item.price,
+            product_type: '',
+            check: false,
+            amount: item.amount,
+            cartId: item.id
+          };
+          temp_arr.push(temp_obj);
+        })
         this.setData({
           cart_storage: temp_arr,
-          price : 0
+          price: 0
         });
-        console.log("cart onShow");
-      }).catch((error) => {
-        // 处理错误  
-        console.error('Error', error);
-      });
+      }
     });
   },
- 
+
   oncheck(e: any) {
     // get id
     const index: number = Number(e.detail.index);
     // const check: boolean = e.detail.check;
     // get check boolean value confirm
-    this.data.cart_storage[index].check =  !this.data.cart_storage[index].check;
+    this.data.cart_storage[index].check = !this.data.cart_storage[index].check;
     const temp = this.data.cart_storage
     this.setData({
-      cart_storage:temp
+      cart_storage: temp
     })
     // console.log(this.data.cart_storage);
     this.computeAmount();
@@ -144,6 +172,13 @@ Page({
     wx.setStorageSync("gate", 1);//从购物车进入
     wx.navigateTo({
       url: `/pages/submitOrder/index`
+    })
+  },
+  onHide() {
+    this.setData({
+      isDelete: false,
+      cart_storage: [],
+      price: 0
     })
   }
 })

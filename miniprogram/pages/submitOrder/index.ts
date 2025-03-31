@@ -113,9 +113,7 @@ Page({
       }).then(() => {
         //在这里查商品的信息
         let data = wx.getStorageSync("buy") as any;
-        console.log("我到要看看你是个什么鬼")
         //从商品详情进入 object 从购物车进入 string
-        console.log(typeof (data))
         //微信比较妖，有时候从storage中获取的数据是string类型有时候又是object类型所以需要判断
         if (typeof (data) == "string") {
           data = JSON.parse(data)

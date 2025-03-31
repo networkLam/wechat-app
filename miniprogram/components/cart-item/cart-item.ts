@@ -1,5 +1,6 @@
 // components/cart-item/cart-item.ts
 import Dialog from '@vant/weapp/dialog/dialog';
+import request from "../../utils/request";
 Component({
   /**
    * 组件的属性列表
@@ -36,13 +37,17 @@ Component({
       type: Number,
       value: 0
     },
-    product_index:{
-      type:String,
-      value:""
+    product_index: {
+      type: String,
+      value: ""
     },
-    showDel:{
-      type:Boolean,
-      value:false
+    showDel: {
+      type: Boolean,
+      value: false
+    },
+    cartId: {
+      type: Number,
+      value: 0
     }
   },
 
@@ -51,7 +56,7 @@ Component({
    */
   data: {
     checked: false,
-    isSteper:false,
+    isSteper: false,
   },
 
   /**
@@ -64,38 +69,45 @@ Component({
       });
     },
     onchecked() {
-      this.triggerEvent("oncheck",{index:this.properties.product_index})
+      this.triggerEvent("oncheck", { index: this.properties.product_index })
     },
-    changeamount(e:any){
+    changeamount(e: any) {
       // 改变数量
-     const num = e.detail;
-     this.triggerEvent("updateamount",{num,index : this.properties.product_index})
-    
+      const num = e.detail;
+      this.triggerEvent("updateamount", { num, index: this.properties.product_index })
+
     },
-    showchange(){
+    showchange() {
       // control stepper whether or not show to UI
       this.setData({
-        isSteper : true
+        isSteper: true
       })
     },
-    hiddenChange(){
+    hiddenChange() {
       // control stepper whether or not show to UI
       this.setData({
-        isSteper : false
+        isSteper: false
       })
     },
     // cart remove goods 
-    remove_goods(){
+    remove_goods() {
       console.log(this.properties.goods_id)
       console.log(this.properties.product_index)
       Dialog.confirm({
-        title: '删除',
-        message: '确定删除？',
-        context:this
+        title: '移除该商品',
+        message: '确定移除？',
+        context: this
       })
         .then(() => {
           // on confirm
-          console.log("delete success")
+          console.log("delete success");
+          const cartId = this.properties.cartId;
+          const index = this.properties.product_index;
+          this.triggerEvent("remove", { cartId, index });
+          // request(`/api/cart/del?id=${this.properties.cartId}`, 'POST').then(res => {
+          //   // console.log("移除", res)
+           
+          // })
         })
         .catch(() => {
           // on cancel
@@ -104,9 +116,9 @@ Component({
     },
     unchecked() {
       //通过父组件调用 取消所有的勾选
-        this.setData({
-          checked:false
-        })
+      this.setData({
+        checked: false
+      })
     },
   }
 })

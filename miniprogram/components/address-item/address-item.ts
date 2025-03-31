@@ -52,8 +52,9 @@ Component({
       }
       this.triggerEvent("jump_edit", { ...parms })
     },
-    test1(){
-      console.log("...")
-    }
+    select_address(){
+      const addId = this.properties.add_id;
+      this.triggerEvent('select_address',{addId})
+    },
   }
 })

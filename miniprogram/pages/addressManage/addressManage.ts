@@ -16,7 +16,7 @@ interface ShowListData {
   minor_address: string,
   phone: string,
   contacts: string,
-  major_origin?:string
+  major_origin?: string
 }
 
 Page({
@@ -25,8 +25,8 @@ Page({
    */
   data: {
     addresssList: [] as ShowListData[],
-    address_origin : "" ,//保存带斜杠的major_address信息
-    selection:false
+    address_origin: "",//保存带斜杠的major_address信息
+    selection: false //判断是从什么页面进来的，只有从订单购买的页面进来才能选择地址
   },
 
   /**
@@ -51,7 +51,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    const temp_arr:ShowListData[] = [] ;//临时的地址数组列表 用于刷新
+    const temp_arr: ShowListData[] = [];//临时的地址数组列表 用于刷新
     request("/api/address/browser", 'GET').then((res: any) => {
       const { data }: { data: RequestData[] } = res.data;
       //分好主要地址 和 次要地址
@@ -65,36 +65,36 @@ Page({
           minor_address: "",
           phone: "",
           contacts: "",
-          major_origin:""
+          major_origin: ""
         }
-       const divide = item.address.split("/");//对地址进行裁切
+        const divide = item.address.split("/");//对地址进行裁切
         // console.log(divide)
-         divide.forEach((_,index)=>{
-           if(index < 3){
-            major_address+=divide[index];
-            temp_major_origin+=(divide[index]+"/")
-           }else{
-            minor_address+=divide[index];
-           }
-         });
-         temp_obj.addId = item.addId;
-         temp_obj.contacts = item.contacts;
-         temp_obj.phone = item.phone;
-         temp_obj.major_address = major_address;
-         temp_obj.minor_address = minor_address;
-         temp_obj.major_origin = temp_major_origin;
-         temp_arr.push(temp_obj)
+        divide.forEach((_, index) => {
+          if (index < 3) {
+            major_address += divide[index];
+            temp_major_origin += (divide[index] + "/")
+          } else {
+            minor_address += divide[index];
+          }
+        });
+        temp_obj.addId = item.addId;
+        temp_obj.contacts = item.contacts;
+        temp_obj.phone = item.phone;
+        temp_obj.major_address = major_address;
+        temp_obj.minor_address = minor_address;
+        temp_obj.major_origin = temp_major_origin;
+        temp_arr.push(temp_obj)
       });
       console.log(temp_arr)
       //刷新数据
       this.setData({
-        addresssList:temp_arr
+        addresssList: temp_arr
       })
     })
   },
   jump(e: any) {
-    console.log(e)
-    const {cantacts,addId,major_address,minor_address,phone,major_origin} = e.detail;
+    console.log('地址管理', e)
+    const { cantacts, addId, major_address, minor_address, phone, major_origin } = e.detail;
     //带参跳转
     wx.navigateTo({
       url: `/pages/addressEdit/addressEdit?cantacts=${cantacts}&addId=${addId}&major_address=${major_address}&minor_address=${minor_address}&phone=${phone}&major_origin=${major_origin}`
@@ -105,18 +105,17 @@ Page({
       url: "/pages/addressEdit/addressEdit?type=add"
     })
   },
-  select_add(e:any){
-    if(this.data.selection){ //证明是从选择地址进入的
-     console.log(e);
-     const {addId}:{addId:number} = e.currentTarget.dataset.addr;
-     console.log(addId)
-     wx.setStorageSync("addId",addId);
-     wx.navigateBack({
-       delta:1
-     })
-    }else{
+  select_add(e: any) {
+    if (this.data.selection) { //证明是从选择地址进入的
+      console.log(e);
+      const { addId }: { addId: number } = e.detail;
+      console.log(addId)
+      wx.setStorageSync("addId", addId);
+      wx.navigateBack({
+        delta: 1
+      })
+    } else {
       console.log("other way into here")
     }
-    
   }
 })
